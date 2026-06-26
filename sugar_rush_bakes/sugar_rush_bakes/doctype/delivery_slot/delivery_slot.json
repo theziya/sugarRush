@@ -1,0 +1,90 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "autoname": "field:slot_name",
+ "creation": "2026-06-24 10:29:33.688429",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "slot_name",
+  "start_time",
+  "display_order",
+  "cutoff_buffer_hours",
+  "column_break_makv",
+  "max_orders",
+  "end_time",
+  "is_active"
+ ],
+ "fields": [
+  {
+   "fieldname": "slot_name",
+   "fieldtype": "Data",
+   "label": "Sloat Name",
+   "unique": 1
+  },
+  {
+   "fieldname": "start_time",
+   "fieldtype": "Time",
+   "label": "Start Time"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "Is Active"
+  },
+  {
+   "fieldname": "cutoff_buffer_hours",
+   "fieldtype": "Int",
+   "label": "Cutoff Buffer Hours"
+  },
+  {
+   "fieldname": "column_break_makv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "max_orders",
+   "fieldtype": "Int",
+   "label": "Max Orders"
+  },
+  {
+   "fieldname": "end_time",
+   "fieldtype": "Time",
+   "label": "End Time"
+  },
+  {
+   "fieldname": "display_order",
+   "fieldtype": "Int",
+   "label": "Display Order"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-06-24 10:36:51.680183",
+ "modified_by": "Administrator",
+ "module": "Sugar Rush Bakes",
+ "name": "Delivery Slot",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

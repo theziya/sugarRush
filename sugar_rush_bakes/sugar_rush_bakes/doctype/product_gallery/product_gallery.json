@@ -1,0 +1,54 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "creation": "2026-06-23 17:21:20.566216",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "image_column",
+  "image",
+  "caption",
+  "display_order"
+ ],
+ "fields": [
+  {
+   "fieldname": "image_column",
+   "fieldtype": "Column Break",
+   "label": "Image"
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "label": "Image"
+  },
+  {
+   "fieldname": "caption",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Caption"
+  },
+  {
+   "fieldname": "display_order",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Display Order"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-06-23 17:24:15.024852",
+ "modified_by": "Administrator",
+ "module": "Sugar Rush Bakes",
+ "name": "Product Gallery",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

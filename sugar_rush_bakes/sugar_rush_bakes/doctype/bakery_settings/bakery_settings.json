@@ -1,0 +1,172 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "creation": "2026-06-24 11:11:10.862108",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "issingle": 1,
+ "field_order": [
+  "bakery_name",
+  "support_email",
+  "razorpay_key_id",
+  "razorpay_secret",
+  "whatsapp_provider",
+  "whatsapp_api_token",
+  "business_address",
+  "column_break_gslu",
+  "support_mobile",
+  "support_whatsapp_number",
+  "instagram_url",
+  "enable_cod",
+  "cod_max_order_amount",
+  "require_full_payment_for_custom_cakes",
+  "free_delivery_charge",
+  "default_delivery_charge",
+  "default_min_advance_hours",
+  "free_delivery_above",
+  "section_break_cbug",
+  "order_policy",
+  "refund_policy",
+  "terms_conditions"
+ ],
+ "fields": [
+  {
+   "fieldname": "bakery_name",
+   "fieldtype": "Data",
+   "label": "Bakery Name"
+  },
+  {
+   "fieldname": "support_mobile",
+   "fieldtype": "Data",
+   "label": "Support Mobile"
+  },
+  {
+   "fieldname": "support_whatsapp_number",
+   "fieldtype": "Data",
+   "label": "Support WhatsApp Number"
+  },
+  {
+   "fieldname": "support_email",
+   "fieldtype": "Data",
+   "label": "Support Email"
+  },
+  {
+   "fieldname": "instagram_url",
+   "fieldtype": "Data",
+   "label": "Instagram URL"
+  },
+  {
+   "fieldname": "default_min_advance_hours",
+   "fieldtype": "Int",
+   "label": "Default Min Advance Hours"
+  },
+  {
+   "default": "0",
+   "fieldname": "enable_cod",
+   "fieldtype": "Check",
+   "label": "Enable COD"
+  },
+  {
+   "fieldname": "cod_max_order_amount",
+   "fieldtype": "Currency",
+   "label": "COD Max Order Amount"
+  },
+  {
+   "default": "0",
+   "fieldname": "require_full_payment_for_custom_cakes",
+   "fieldtype": "Check",
+   "label": "Require Full Payment for Custom Cakes"
+  },
+  {
+   "fieldname": "default_delivery_charge",
+   "fieldtype": "Currency",
+   "label": "Default Delivery Charge"
+  },
+  {
+   "fieldname": "free_delivery_charge",
+   "fieldtype": "Currency",
+   "label": "Free Delivery Charge"
+  },
+  {
+   "fieldname": "free_delivery_above",
+   "fieldtype": "Currency",
+   "label": "Free Delivery Above"
+  },
+  {
+   "fieldname": "razorpay_key_id",
+   "fieldtype": "Data",
+   "label": "Razorpay Key ID"
+  },
+  {
+   "fieldname": "razorpay_secret",
+   "fieldtype": "Password",
+   "label": "Razorpay Secret"
+  },
+  {
+   "fieldname": "whatsapp_provider",
+   "fieldtype": "Select",
+   "label": "WhatsApp Provider"
+  },
+  {
+   "fieldname": "whatsapp_api_token",
+   "fieldtype": "Password",
+   "label": "WhatsApp API Token"
+  },
+  {
+   "fieldname": "business_address",
+   "fieldtype": "Small Text",
+   "label": "Business Address"
+  },
+  {
+   "fieldname": "order_policy",
+   "fieldtype": "Text Editor",
+   "label": "Order Policy"
+  },
+  {
+   "fieldname": "refund_policy",
+   "fieldtype": "Text Editor",
+   "label": "Refund Policy"
+  },
+  {
+   "fieldname": "terms_conditions",
+   "fieldtype": "Text Editor",
+   "label": "Terms & Conditions"
+  },
+  {
+   "fieldname": "column_break_gslu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_cbug",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-06-24 11:50:25.785507",
+ "modified_by": "Administrator",
+ "module": "Sugar Rush Bakes",
+ "name": "Bakery Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

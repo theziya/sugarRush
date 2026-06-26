@@ -1,0 +1,383 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "SRB-ORD-.YYYY.-.#####",
+ "creation": "2026-06-26 16:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "customer_details_section",
+  "customer",
+  "customer_name",
+  "column_break_cust",
+  "mobile_number",
+  "email",
+  "delivery_details_section",
+  "order_date",
+  "order_source",
+  "order_type",
+  "column_break_del1",
+  "delivery_type",
+  "delivery_date",
+  "delivery_slot",
+  "delivery_address_section",
+  "address",
+  "pincode",
+  "column_break_del2",
+  "serviceable_area",
+  "order_summary_section",
+  "items",
+  "coupon_section",
+  "coupon_code",
+  "coupon_discount",
+  "totals_section",
+  "subtotal",
+  "discount_amount",
+  "column_break_totals",
+  "delivery_charge",
+  "tax_amount",
+  "grand_total",
+  "payment_section",
+  "advance_amount_required",
+  "amount_paid",
+  "balance_amount",
+  "column_break_pay",
+  "payment_method",
+  "payment_status",
+  "razorpay_order_id",
+  "razorpay_payment_id",
+  "status_section",
+  "order_status",
+  "invoice_generated",
+  "invoice_reference",
+  "notes_section",
+  "customer_notes",
+  "column_break_notes",
+  "internal_notes",
+  "communication_section",
+  "whatsapp_sent",
+  "last_whatsapp_status"
+ ],
+ "fields": [
+  {
+   "fieldname": "customer_details_section",
+   "fieldtype": "Section Break",
+   "label": "Customer Details"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "SRB Customer"
+  },
+  {
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "label": "Customer Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_cust",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "mobile_number",
+   "fieldtype": "Data",
+   "label": "Mobile Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email"
+  },
+  {
+   "fieldname": "delivery_details_section",
+   "fieldtype": "Section Break",
+   "label": "Delivery Details"
+  },
+  {
+   "default": "Now",
+   "fieldname": "order_date",
+   "fieldtype": "Datetime",
+   "label": "Order Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "order_source",
+   "fieldtype": "Select",
+   "label": "Order Source",
+   "options": "Website\nInstagram\nWhatsApp\nManual",
+   "reqd": 1
+  },
+  {
+   "fieldname": "order_type",
+   "fieldtype": "Select",
+   "label": "Order Type",
+   "options": "Standard\nCustom Cake",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_del1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "delivery_type",
+   "fieldtype": "Select",
+   "label": "Delivery Type",
+   "options": "Delivery\nPickup",
+   "reqd": 1
+  },
+  {
+   "fieldname": "delivery_date",
+   "fieldtype": "Date",
+   "label": "Delivery Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "delivery_slot",
+   "fieldtype": "Link",
+   "label": "Delivery Slot",
+   "options": "Delivery Slot"
+  },
+  {
+   "fieldname": "delivery_address_section",
+   "fieldtype": "Section Break",
+   "label": "Delivery Address"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address"
+  },
+  {
+   "fieldname": "pincode",
+   "fieldtype": "Data",
+   "label": "Pincode"
+  },
+  {
+   "fieldname": "column_break_del2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "serviceable_area",
+   "fieldtype": "Link",
+   "label": "Serviceable Area",
+   "options": "Serviceable Area"
+  },
+  {
+   "fieldname": "order_summary_section",
+   "fieldtype": "Section Break",
+   "label": "Order Summary"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Customer Order Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "coupon_section",
+   "fieldtype": "Section Break",
+   "label": "Coupon"
+  },
+  {
+   "fieldname": "coupon_code",
+   "fieldtype": "Link",
+   "label": "Coupon Code",
+   "options": "Coupon"
+  },
+  {
+   "fieldname": "coupon_discount",
+   "fieldtype": "Currency",
+   "label": "Coupon Discount"
+  },
+  {
+   "fieldname": "totals_section",
+   "fieldtype": "Section Break",
+   "label": "Totals"
+  },
+  {
+   "fieldname": "subtotal",
+   "fieldtype": "Currency",
+   "label": "Subtotal",
+   "reqd": 1
+  },
+  {
+   "fieldname": "discount_amount",
+   "fieldtype": "Currency",
+   "label": "Discount Amount"
+  },
+  {
+   "fieldname": "column_break_totals",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "delivery_charge",
+   "fieldtype": "Currency",
+   "label": "Delivery Charge"
+  },
+  {
+   "fieldname": "tax_amount",
+   "fieldtype": "Currency",
+   "label": "Tax Amount"
+  },
+  {
+   "bold": 1,
+   "fieldname": "grand_total",
+   "fieldtype": "Currency",
+   "label": "Grand Total",
+   "reqd": 1
+  },
+  {
+   "fieldname": "payment_section",
+   "fieldtype": "Section Break",
+   "label": "Payment"
+  },
+  {
+   "fieldname": "advance_amount_required",
+   "fieldtype": "Currency",
+   "label": "Advance Amount Required"
+  },
+  {
+   "fieldname": "amount_paid",
+   "fieldtype": "Currency",
+   "label": "Amount Paid"
+  },
+  {
+   "fieldname": "balance_amount",
+   "fieldtype": "Currency",
+   "label": "Balance Amount"
+  },
+  {
+   "fieldname": "column_break_pay",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "payment_method",
+   "fieldtype": "Select",
+   "label": "Payment Method",
+   "options": "\nRazorpay\nUPI\nCOD\nPartial Advance\nManual"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "payment_status",
+   "fieldtype": "Select",
+   "label": "Payment Status",
+   "options": "Pending\nPaid\nPartially Paid\nFailed\nRefunded",
+   "reqd": 1
+  },
+  {
+   "fieldname": "razorpay_order_id",
+   "fieldtype": "Data",
+   "label": "Razorpay Order ID"
+  },
+  {
+   "fieldname": "razorpay_payment_id",
+   "fieldtype": "Data",
+   "label": "Razorpay Payment ID"
+  },
+  {
+   "fieldname": "status_section",
+   "fieldtype": "Section Break",
+   "label": "Status Tracking"
+  },
+  {
+   "fieldname": "order_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Order Status",
+   "options": "Draft\nPlaced\nConfirmed\nIn Preparation\nReady for Pickup\nOut for Delivery\nDelivered\nCancelled",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "invoice_generated",
+   "fieldtype": "Check",
+   "label": "Invoice Generated"
+  },
+  {
+   "fieldname": "invoice_reference",
+   "fieldtype": "Data",
+   "label": "Invoice Reference"
+  },
+  {
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "customer_notes",
+   "fieldtype": "Small Text",
+   "label": "Customer Notes"
+  },
+  {
+   "fieldname": "column_break_notes",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "internal_notes",
+   "fieldtype": "Small Text",
+   "label": "Internal Notes"
+  },
+  {
+   "fieldname": "communication_section",
+   "fieldtype": "Section Break",
+   "label": "Communication Log"
+  },
+  {
+   "default": "0",
+   "fieldname": "whatsapp_sent",
+   "fieldtype": "Check",
+   "label": "WhatsApp Sent"
+  },
+  {
+   "fieldname": "last_whatsapp_status",
+   "fieldtype": "Data",
+   "label": "Last WhatsApp Status"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-06-26 16:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Sugar Rush Bakes",
+ "name": "Customer Order",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Administrator",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "customer_name",
+ "track_changes": 1
+}

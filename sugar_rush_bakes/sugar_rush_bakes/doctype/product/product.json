@@ -1,0 +1,277 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "creation": "2026-06-23 16:28:25.881221",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "product_name",
+  "product_type",
+  "default_egg_type",
+  "description",
+  "allow_same_day_delivery",
+  "starting_price",
+  "base_price",
+  "offer_price",
+  "product_weight_label",
+  "available_for_website",
+  "show_price",
+  "main_image",
+  "thumbnail_image",
+  "meta_title",
+  "meta_description",
+  "column_break_joma",
+  "category",
+  "slug",
+  "short_description",
+  "is_active",
+  "is_featured",
+  "is_best_seller",
+  "is_customizable",
+  "is_eggless_available",
+  "minimum_advance_hours",
+  "preparation_time_hours",
+  "sku__product_code",
+  "serves",
+  "product_badge",
+  "display_order",
+  "search_keywords",
+  "notes_for_customer",
+  "section_break_kfza",
+  "gallery",
+  "section_break_boax",
+  "variants",
+  "section_break_phbd",
+  "addons"
+ ],
+ "fields": [
+  {
+   "fieldname": "product_name",
+   "fieldtype": "Data",
+   "label": "Product Name"
+  },
+  {
+   "fieldname": "slug",
+   "fieldtype": "Data",
+   "label": "Slug"
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Link",
+   "label": "Category",
+   "options": "Product Category"
+  },
+  {
+   "fieldname": "product_type",
+   "fieldtype": "Select",
+   "label": "Product Type",
+   "options": "\nCake\nBento Cake\nBrownie\nDessert Tub\nMousse\nTres Leches\nDream Cake\nOther"
+  },
+  {
+   "fieldname": "short_description",
+   "fieldtype": "Small Text",
+   "label": "Short Description"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "Is Active"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_featured",
+   "fieldtype": "Check",
+   "label": "Is Featured"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_best_seller",
+   "fieldtype": "Check",
+   "label": "Is Best Seller"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_customizable",
+   "fieldtype": "Check",
+   "label": "Is Customizable"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_eggless_available",
+   "fieldtype": "Check",
+   "label": "Is Eggless Available"
+  },
+  {
+   "fieldname": "default_egg_type",
+   "fieldtype": "Select",
+   "label": "Default Egg Type",
+   "options": "\nEgg\nEggless"
+  },
+  {
+   "default": "0",
+   "fieldname": "allow_same_day_delivery",
+   "fieldtype": "Check",
+   "label": "Allow Same Day Delivery"
+  },
+  {
+   "fieldname": "minimum_advance_hours",
+   "fieldtype": "Int",
+   "label": "Minimum Advance Hours"
+  },
+  {
+   "fieldname": "preparation_time_hours",
+   "fieldtype": "Int",
+   "label": "Preparation Time Hours"
+  },
+  {
+   "fieldname": "starting_price",
+   "fieldtype": "Currency",
+   "label": "Starting Price"
+  },
+  {
+   "fieldname": "base_price",
+   "fieldtype": "Currency",
+   "label": "Base Price"
+  },
+  {
+   "fieldname": "offer_price",
+   "fieldtype": "Currency",
+   "label": "Offer Price"
+  },
+  {
+   "fieldname": "sku__product_code",
+   "fieldtype": "Data",
+   "label": "SKU / Product Code"
+  },
+  {
+   "fieldname": "serves",
+   "fieldtype": "Data",
+   "label": "Serves"
+  },
+  {
+   "fieldname": "product_weight_label",
+   "fieldtype": "Data",
+   "label": "Product Weight Label"
+  },
+  {
+   "default": "0",
+   "fieldname": "available_for_website",
+   "fieldtype": "Check",
+   "label": "Available for Website"
+  },
+  {
+   "default": "0",
+   "fieldname": "show_price",
+   "fieldtype": "Check",
+   "label": "Show Price"
+  },
+  {
+   "fieldname": "main_image",
+   "fieldtype": "Attach Image",
+   "label": "Main Image"
+  },
+  {
+   "fieldname": "thumbnail_image",
+   "fieldtype": "Attach Image",
+   "label": "Thumbnail Image"
+  },
+  {
+   "fieldname": "product_badge",
+   "fieldtype": "Data",
+   "label": "Product Badge"
+  },
+  {
+   "fieldname": "display_order",
+   "fieldtype": "Int",
+   "label": "Display Order"
+  },
+  {
+   "fieldname": "notes_for_customer",
+   "fieldtype": "Small Text",
+   "label": "Notes for Customer"
+  },
+  {
+   "fieldname": "meta_title",
+   "fieldtype": "Data",
+   "label": "Meta Title"
+  },
+  {
+   "fieldname": "meta_description",
+   "fieldtype": "Small Text",
+   "label": "Meta Description"
+  },
+  {
+   "fieldname": "search_keywords",
+   "fieldtype": "Small Text",
+   "label": "Search Keywords"
+  },
+  {
+   "fieldname": "column_break_joma",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_kfza",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "gallery",
+   "fieldtype": "Table",
+   "label": "Gallery",
+   "options": "Product Gallery"
+  },
+  {
+   "fieldname": "section_break_boax",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "variants",
+   "fieldtype": "Table",
+   "label": "Variants",
+   "options": "Product Variant Option"
+  },
+  {
+   "fieldname": "section_break_phbd",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "addons",
+   "fieldtype": "Table",
+   "label": "Add-ons",
+   "options": "Product Add-on Option"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-06-24 10:26:34.702857",
+ "modified_by": "Administrator",
+ "module": "Sugar Rush Bakes",
+ "name": "Product",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
