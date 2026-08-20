@@ -5,13 +5,11 @@
  "creation": "2026-06-24 11:11:10.862108",
  "doctype": "DocType",
  "engine": "InnoDB",
- "issingle": 1,
  "field_order": [
   "bakery_name",
   "support_email",
   "razorpay_key_id",
   "razorpay_secret",
-  "whatsapp_provider",
   "whatsapp_api_token",
   "business_address",
   "column_break_gslu",
@@ -25,6 +23,18 @@
   "default_delivery_charge",
   "default_min_advance_hours",
   "free_delivery_above",
+  "twilio_settings_tab",
+  "twilio_whatsapp_settings_section",
+  "twilio_whatsapp_number",
+  "enable_whatsapp",
+  "column_break_zapa",
+  "whatsapp_provider",
+  "twilio_environment",
+  "section_break_ryid",
+  "twilio_account_sid",
+  "twilio_auth_token",
+  "twilio_sandbox_code",
+  "privacy_policy_tab",
   "section_break_cbug",
   "order_policy",
   "refund_policy",
@@ -106,7 +116,8 @@
   {
    "fieldname": "whatsapp_provider",
    "fieldtype": "Select",
-   "label": "WhatsApp Provider"
+   "label": "WhatsApp Provider",
+   "options": "\nTwilio\nMeta Cloud API"
   },
   {
    "fieldname": "whatsapp_api_token",
@@ -140,12 +151,68 @@
   {
    "fieldname": "section_break_cbug",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "twilio_settings_tab",
+   "fieldtype": "Tab Break",
+   "label": "Twilio Settings"
+  },
+  {
+   "fieldname": "twilio_whatsapp_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Twilio WhatsApp Settings"
+  },
+  {
+   "fieldname": "twilio_whatsapp_number",
+   "fieldtype": "Data",
+   "label": "Twilio WhatsApp Number"
+  },
+  {
+   "default": "0",
+   "fieldname": "enable_whatsapp",
+   "fieldtype": "Check",
+   "label": "Enable WhatsApp"
+  },
+  {
+   "fieldname": "column_break_zapa",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "twilio_environment",
+   "fieldtype": "Select",
+   "label": "Twilio Environment",
+   "options": "\nSandbox\nProduction"
+  },
+  {
+   "fieldname": "section_break_ryid",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "twilio_account_sid",
+   "fieldtype": "Data",
+   "label": "Twilio Account SID"
+  },
+  {
+   "fieldname": "twilio_auth_token",
+   "fieldtype": "Password",
+   "label": "Twilio Auth Token"
+  },
+  {
+   "fieldname": "twilio_sandbox_code",
+   "fieldtype": "Data",
+   "label": "Twilio Sandbox Code"
+  },
+  {
+   "fieldname": "privacy_policy_tab",
+   "fieldtype": "Tab Break",
+   "label": "privacy policy"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
+ "issingle": 1,
  "links": [],
- "modified": "2026-06-24 11:50:25.785507",
+ "modified": "2026-07-28 12:41:19.217843",
  "modified_by": "Administrator",
  "module": "Sugar Rush Bakes",
  "name": "Bakery Settings",
@@ -155,10 +222,8 @@
    "create": 1,
    "delete": 1,
    "email": 1,
-   "export": 1,
    "print": 1,
    "read": 1,
-   "report": 1,
    "role": "System Manager",
    "share": 1,
    "write": 1

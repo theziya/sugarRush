@@ -1,0 +1,342 @@
+{
+ "app": "sugar_rush_bakes",
+ "charts": [],
+ "content": "[{\"id\":\"srb_orders_today\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Orders Today\",\"col\":3}},{\"id\":\"srb_pending_orders\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Pending Orders\",\"col\":3}},{\"id\":\"srb_pending_ccr\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Pending Custom Cake Requests\",\"col\":3}},{\"id\":\"srb_revenue_today\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Revenue Today\",\"col\":3}},{\"id\":\"srb_spacer_1\",\"type\":\"spacer\",\"data\":{\"col\":12}}]",
+ "creation": "2026-06-28 00:00:00.000000",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "cake",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "Sugar Rush Bakes",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Operations",
+   "link_count": 5,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Customer Order",
+   "link_count": 0,
+   "link_to": "Customer Order",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Custom Cake Request",
+   "link_count": 0,
+   "link_to": "Custom Cake Request",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Payment Transaction",
+   "link_count": 0,
+   "link_to": "Payment Transaction",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "WhatsApp Message Log",
+   "link_count": 0,
+   "link_to": "WhatsApp Message Log",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "SRB Customer",
+   "link_count": 0,
+   "link_to": "SRB Customer",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Catalog & Delivery",
+   "link_count": 5,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Product Category",
+   "link_count": 0,
+   "link_to": "Product Category",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Product",
+   "link_count": 0,
+   "link_to": "Product",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Delivery Slot",
+   "link_count": 0,
+   "link_to": "Delivery Slot",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Serviceable Area",
+   "link_count": 0,
+   "link_to": "Serviceable Area",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Coupon",
+   "link_count": 0,
+   "link_to": "Coupon",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Admin",
+   "link_count": 7,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Bakery Settings",
+   "link_count": 0,
+   "link_to": "Bakery Settings",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Reports",
+   "link_count": 0,
+   "link_to": "Report",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "User",
+   "link_count": 0,
+   "link_to": "User",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Role",
+   "link_count": 0,
+   "link_to": "Role",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Role Permissions Manager",
+   "link_count": 0,
+   "link_to": "permission-manager",
+   "link_type": "Page",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Error Log",
+   "link_count": 0,
+   "link_to": "Error Log",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "RQ Job",
+   "link_count": 0,
+   "link_to": "RQ Job",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-06-28 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Sugar Rush Bakes",
+ "name": "Sugar Rush Bakes",
+ "number_cards": [
+  {
+   "label": "Orders Today",
+   "number_card_name": "Orders Today"
+  },
+  {
+   "label": "Pending Orders",
+   "number_card_name": "Pending Orders"
+  },
+  {
+   "label": "Pending Custom Cake Requests",
+   "number_card_name": "Pending Custom Cake Requests"
+  },
+  {
+   "label": "Revenue Today",
+   "number_card_name": "Revenue Today"
+  }
+ ],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "restrict_to_domain": "",
+ "roles": [],
+ "sequence_id": 1.0,
+ "shortcuts": [
+  {
+   "doc_view": "List",
+   "label": "Product Category",
+   "link_to": "Product Category",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "List",
+   "label": "Product",
+   "link_to": "Product",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "List",
+   "label": "Delivery Slot",
+   "link_to": "Delivery Slot",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "List",
+   "label": "Serviceable Area",
+   "link_to": "Serviceable Area",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "List",
+   "label": "Coupon",
+   "link_to": "Coupon",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "List",
+   "label": "SRB Customer",
+   "link_to": "SRB Customer",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "List",
+   "label": "Customer Order",
+   "link_to": "Customer Order",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "List",
+   "label": "Custom Cake Request",
+   "link_to": "Custom Cake Request",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "List",
+   "label": "Payment Transaction",
+   "link_to": "Payment Transaction",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "List",
+   "label": "WhatsApp Message Log",
+   "link_to": "WhatsApp Message Log",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "List",
+   "label": "Bakery Settings",
+   "link_to": "Bakery Settings",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "List",
+   "label": "Reports",
+   "link_to": "Report",
+   "type": "DocType"
+  },
+  {
+   "label": "Web Dashboard",
+   "type": "URL",
+   "url": "/dashboard"
+  },
+  {
+   "doc_view": "New",
+   "label": "New Order",
+   "link_to": "Customer Order",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "New",
+   "label": "New Custom Cake Request",
+   "link_to": "Custom Cake Request",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "List",
+   "label": "Users",
+   "link_to": "User",
+   "type": "DocType"
+  }
+ ],
+ "title": "Sugar Rush Bakes",
+ "type": "Workspace"
+}

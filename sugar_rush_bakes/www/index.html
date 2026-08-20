@@ -1,0 +1,132 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+<main class="srb-site">
+	<section class="srb-hero">
+		<div class="srb-hero__media" aria-hidden="true">
+			{% set hero_image = (featured_products[0].main_image or featured_products[0].thumbnail_image) if featured_products else "" %}
+			{% if hero_image %}
+			<img src="{{ hero_image }}" alt="">
+			{% endif %}
+		</div>
+		<div class="srb-hero__content">
+			<p class="srb-kicker">Fresh bakes, custom cakes, and celebration desserts</p>
+			<h1>{{ settings.bakery_name or "Sugar Rush Bakes" }}</h1>
+			<p class="srb-lede">Order signature cakes, bento sets, brownies, dessert tubs, and custom celebration cakes with clean tracking from inquiry to delivery.</p>
+			<div class="srb-actions">
+				<a class="srb-button srb-button--primary" href="/app/customer-order/new-customer-order">Place Order</a>
+				<a class="srb-button" href="/app/custom-cake-request/new-custom-cake-request">Custom Cake Request</a>
+				{% if support_whatsapp %}
+				<a class="srb-button srb-button--ghost" href="https://wa.me/{{ support_whatsapp | replace('+', '') | replace(' ', '') }}">WhatsApp</a>
+				{% endif %}
+			</div>
+		</div>
+	</section>
+
+	<section class="srb-band srb-stats" aria-label="Business Highlights">
+		{% for stat in stats %}
+		<div>
+			<strong>{{ stat.value }}</strong>
+			<span>{{ stat.label }}</span>
+		</div>
+		{% endfor %}
+		<div>
+			<strong>{{ settings.default_min_advance_hours or 24 }}h</strong>
+			<span>Default Advance</span>
+		</div>
+	</section>
+
+	<section class="srb-section">
+		<div class="srb-section__head">
+			<h2>Shop By Category</h2>
+			<a href="/app/product-category">Manage Categories</a>
+		</div>
+		<div class="srb-grid srb-grid--categories">
+			{% for category in categories %}
+			<article class="srb-tile">
+				{% if category.category_image %}
+				<img src="{{ category.category_image }}" alt="{{ category.category_name }}">
+				{% endif %}
+				<div>
+					<h3>{{ category.category_name }}</h3>
+					<p>{{ frappe.utils.strip_html(category.description or "")[:120] }}</p>
+				</div>
+			</article>
+			{% else %}
+			<p class="srb-empty">Add active Product Categories with “Show on Homepage” enabled.</p>
+			{% endfor %}
+		</div>
+	</section>
+
+	<section class="srb-section">
+		<div class="srb-section__head">
+			<h2>Featured Bakes</h2>
+			<a href="/app/product">Manage Products</a>
+		</div>
+		<div class="srb-grid srb-grid--products">
+			{% for product in featured_products %}
+			<article class="srb-product">
+				{% set image = product.thumbnail_image or product.main_image %}
+				{% if image %}
+				<img src="{{ image }}" alt="{{ product.product_name }}">
+				{% endif %}
+				<div class="srb-product__body">
+					{% if product.product_badge or product.is_best_seller %}
+					<span class="srb-pill">{{ product.product_badge or "Best Seller" }}</span>
+					{% endif %}
+					<h3>{{ product.product_name }}</h3>
+					<p>{{ product.short_description or "Freshly made for celebrations, gifting, and sweet cravings." }}</p>
+					{% if product.show_price %}
+					<strong>{{ frappe.format_value(product.offer_price or product.starting_price, {"fieldtype": "Currency", "options": "INR"}) }}</strong>
+					{% endif %}
+				</div>
+			</article>
+			{% else %}
+			<p class="srb-empty">Mark products as active, available for website, and featured to show them here.</p>
+			{% endfor %}
+		</div>
+	</section>
+
+	<section class="srb-band srb-split">
+		<div>
+			<p class="srb-kicker">Custom Cakes</p>
+			<h2>From inquiry to quote to confirmed order.</h2>
+			<p>Capture theme, flavour, weight, serving count, reference images, budget, quote status, follow-ups, and conversion to Customer Order from one clean flow.</p>
+			<a class="srb-button srb-button--primary" href="/app/custom-cake-request/new-custom-cake-request">Start A Request</a>
+		</div>
+		<div class="srb-checklist">
+			<span>Reference images</span>
+			<span>Admin quotation</span>
+			<span>Advance tracking</span>
+			<span>WhatsApp follow-up</span>
+		</div>
+	</section>
+
+	<section class="srb-section">
+		<div class="srb-section__head">
+			<h2>Current Offers</h2>
+			<a href="/app/coupon">Manage Coupons</a>
+		</div>
+		<div class="srb-grid srb-grid--offers">
+			{% for offer in offers %}
+			<article class="srb-offer">
+				<strong>{{ offer.coupon_code }}</strong>
+				<p>{{ offer.description or "Special offer for Sugar Rush customers." }}</p>
+				<span>Valid till {{ frappe.format_date(offer.valid_to) if offer.valid_to else "limited period" }}</span>
+			</article>
+			{% else %}
+			<p class="srb-empty">Create active coupons to show customer-facing offers.</p>
+			{% endfor %}
+		</div>
+	</section>
+
+	<section class="srb-footer-cta">
+		<h2>Run the bakery from one workspace.</h2>
+		<p>Orders, payments, custom cake requests, delivery slots, serviceable areas, coupons, products, customers, and WhatsApp logs are all connected.</p>
+		<div class="srb-actions">
+			<a class="srb-button srb-button--primary" href="/app/sugar-rush-bakes">Open Workspace</a>
+			<a class="srb-button" href="/dashboard">Open Dashboard</a>
+		</div>
+	</section>
+</main>
+{% endblock %}

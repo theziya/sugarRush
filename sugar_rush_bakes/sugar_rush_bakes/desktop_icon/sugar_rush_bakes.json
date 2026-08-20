@@ -1,0 +1,21 @@
+{
+ "app": "sugar_rush_bakes",
+ "creation": "2026-06-28 00:00:00.000000",
+ "docstatus": 0,
+ "doctype": "Desktop Icon",
+ "hidden": 0,
+ "icon": "cake",
+ "icon_type": "Link",
+ "idx": 1,
+ "label": "Sugar Rush Bakes",
+ "link_to": "Sugar Rush Bakes",
+ "link_type": "Workspace Sidebar",
+ "modified": "2026-06-28 00:00:00.000000",
+ "modified_by": "Administrator",
+ "name": "Sugar Rush Bakes",
+ "owner": "Administrator",
+ "restrict_removal": 1,
+ "roles": [],
+ "sidebar": "Sugar Rush Bakes",
+ "standard": 1
+}

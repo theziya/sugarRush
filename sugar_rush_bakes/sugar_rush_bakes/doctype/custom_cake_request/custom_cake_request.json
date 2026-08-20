@@ -1,0 +1,477 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "SRB-CCR-.YYYY.-.#####",
+ "creation": "2026-06-28 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "requester_details_section",
+  "customer",
+  "customer_name",
+  "mobile_number",
+  "alternate_mobile_number",
+  "column_break_requester",
+  "email",
+  "instagram_handle",
+  "source",
+  "occasion_section",
+  "occasion",
+  "delivery_type",
+  "delivery_date",
+  "delivery_slot",
+  "occasion_time",
+  "column_break_occasion",
+  "number_of_servings",
+  "weight_requirement",
+  "flavour",
+  "egg_type",
+  "budget",
+  "cake_details_section",
+  "message_on_cake",
+  "design_name",
+  "cake_theme_description",
+  "design_notes",
+  "special_instructions",
+  "delivery_address_section",
+  "address",
+  "address_line_1",
+  "address_line_2",
+  "landmark",
+  "column_break_address",
+  "city",
+  "state",
+  "pincode",
+  "delivery_instructions",
+  "attachments_section",
+  "reference_image",
+  "additional_reference_notes",
+  "inspiration_link",
+  "reference_images",
+  "quotation_section",
+  "status",
+  "priority",
+  "assigned_to",
+  "column_break_quotation",
+  "estimated_cost",
+  "quoted_price",
+  "advance_amount_required",
+  "quote_shared_on",
+  "quote_shared_via",
+  "customer_response_status",
+  "admin_remarks",
+  "rejection_reason",
+  "conversion_section",
+  "converted_to_order",
+  "customer_order",
+  "column_break_conversion",
+  "converted_on",
+  "converted_by",
+  "communication_section",
+  "last_whatsapp_status",
+  "last_follow_up_on",
+  "next_follow_up_on",
+  "follow_up_notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "requester_details_section",
+   "fieldtype": "Section Break",
+   "label": "Requester Details"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "SRB Customer"
+  },
+  {
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Customer Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "mobile_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Mobile Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "alternate_mobile_number",
+   "fieldtype": "Data",
+   "label": "Alternate Mobile Number"
+  },
+  {
+   "fieldname": "column_break_requester",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email"
+  },
+  {
+   "fieldname": "instagram_handle",
+   "fieldtype": "Data",
+   "label": "Instagram Handle"
+  },
+  {
+   "fieldname": "source",
+   "fieldtype": "Select",
+   "label": "Source",
+   "options": "Website\nInstagram\nWhatsApp\nManual",
+   "reqd": 1
+  },
+  {
+   "fieldname": "occasion_section",
+   "fieldtype": "Section Break",
+   "label": "Occasion / Requirement"
+  },
+  {
+   "fieldname": "occasion",
+   "fieldtype": "Select",
+   "label": "Occasion",
+   "options": "\nBirthday\nAnniversary\nBaby Shower\nEngagement\nWedding\nOther"
+  },
+  {
+   "fieldname": "delivery_type",
+   "fieldtype": "Select",
+   "label": "Delivery Type",
+   "options": "Delivery\nPickup",
+   "reqd": 1
+  },
+  {
+   "fieldname": "delivery_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Delivery Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "delivery_slot",
+   "fieldtype": "Link",
+   "label": "Delivery Slot",
+   "options": "Delivery Slot"
+  },
+  {
+   "fieldname": "occasion_time",
+   "fieldtype": "Time",
+   "label": "Occasion Time"
+  },
+  {
+   "fieldname": "column_break_occasion",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "number_of_servings",
+   "fieldtype": "Data",
+   "label": "Number of Servings"
+  },
+  {
+   "fieldname": "weight_requirement",
+   "fieldtype": "Data",
+   "label": "Weight Requirement"
+  },
+  {
+   "fieldname": "flavour",
+   "fieldtype": "Data",
+   "label": "Flavour"
+  },
+  {
+   "fieldname": "egg_type",
+   "fieldtype": "Select",
+   "label": "Egg Type",
+   "options": "\nEgg\nEggless"
+  },
+  {
+   "fieldname": "budget",
+   "fieldtype": "Currency",
+   "label": "Budget"
+  },
+  {
+   "fieldname": "cake_details_section",
+   "fieldtype": "Section Break",
+   "label": "Cake Details"
+  },
+  {
+   "fieldname": "message_on_cake",
+   "fieldtype": "Data",
+   "label": "Message on Cake"
+  },
+  {
+   "fieldname": "design_name",
+   "fieldtype": "Data",
+   "label": "Theme / Design Name"
+  },
+  {
+   "fieldname": "cake_theme_description",
+   "fieldtype": "Text Editor",
+   "label": "Cake Theme Description",
+   "reqd": 1
+  },
+  {
+   "fieldname": "design_notes",
+   "fieldtype": "Text Editor",
+   "label": "Design Notes"
+  },
+  {
+   "fieldname": "special_instructions",
+   "fieldtype": "Small Text",
+   "label": "Special Instructions"
+  },
+  {
+   "fieldname": "delivery_address_section",
+   "fieldtype": "Section Break",
+   "label": "Delivery Address"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Link",
+   "label": "Address",
+   "options": "Customer Address"
+  },
+  {
+   "fieldname": "address_line_1",
+   "fieldtype": "Data",
+   "label": "Address Line 1"
+  },
+  {
+   "fieldname": "address_line_2",
+   "fieldtype": "Data",
+   "label": "Address Line 2"
+  },
+  {
+   "fieldname": "landmark",
+   "fieldtype": "Data",
+   "label": "Landmark"
+  },
+  {
+   "fieldname": "column_break_address",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "label": "State"
+  },
+  {
+   "fieldname": "pincode",
+   "fieldtype": "Data",
+   "label": "Pincode"
+  },
+  {
+   "fieldname": "delivery_instructions",
+   "fieldtype": "Small Text",
+   "label": "Delivery Instructions"
+  },
+  {
+   "fieldname": "attachments_section",
+   "fieldtype": "Section Break",
+   "label": "Attachments / Reference"
+  },
+  {
+   "fieldname": "reference_image",
+   "fieldtype": "Attach Image",
+   "label": "Reference Image"
+  },
+  {
+   "fieldname": "additional_reference_notes",
+   "fieldtype": "Small Text",
+   "label": "Additional Reference Notes"
+  },
+  {
+   "fieldname": "inspiration_link",
+   "fieldtype": "Data",
+   "label": "Inspiration Link"
+  },
+  {
+   "fieldname": "reference_images",
+   "fieldtype": "Table",
+   "label": "Reference Images",
+   "options": "Custom Cake Reference Image"
+  },
+  {
+   "fieldname": "quotation_section",
+   "fieldtype": "Section Break",
+   "label": "Admin Quotation / Internal Handling"
+  },
+  {
+   "default": "New",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "New\nUnder Review\nQuoted\nAwaiting Customer Confirmation\nConfirmed\nConverted to Order\nRejected\nClosed",
+   "reqd": 1
+  },
+  {
+   "fieldname": "priority",
+   "fieldtype": "Select",
+   "label": "Priority",
+   "options": "\nLow\nMedium\nHigh\nUrgent"
+  },
+  {
+   "fieldname": "assigned_to",
+   "fieldtype": "Link",
+   "label": "Assigned To",
+   "options": "User"
+  },
+  {
+   "fieldname": "column_break_quotation",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "estimated_cost",
+   "fieldtype": "Currency",
+   "label": "Estimated Cost"
+  },
+  {
+   "fieldname": "quoted_price",
+   "fieldtype": "Currency",
+   "label": "Quoted Price"
+  },
+  {
+   "fieldname": "advance_amount_required",
+   "fieldtype": "Currency",
+   "label": "Advance Amount Required"
+  },
+  {
+   "fieldname": "quote_shared_on",
+   "fieldtype": "Datetime",
+   "label": "Quote Shared On"
+  },
+  {
+   "fieldname": "quote_shared_via",
+   "fieldtype": "Select",
+   "label": "Quote Shared Via",
+   "options": "\nWhatsApp\nInstagram\nCall\nEmail\nManual"
+  },
+  {
+   "fieldname": "customer_response_status",
+   "fieldtype": "Select",
+   "label": "Customer Response Status",
+   "options": "\nWaiting\nAccepted\nRejected\nNo Response"
+  },
+  {
+   "fieldname": "admin_remarks",
+   "fieldtype": "Text Editor",
+   "label": "Admin Remarks"
+  },
+  {
+   "fieldname": "rejection_reason",
+   "fieldtype": "Small Text",
+   "label": "Rejection Reason"
+  },
+  {
+   "fieldname": "conversion_section",
+   "fieldtype": "Section Break",
+   "label": "Conversion to Order"
+  },
+  {
+   "default": "0",
+   "fieldname": "converted_to_order",
+   "fieldtype": "Check",
+   "label": "Converted To Order",
+   "read_only": 1
+  },
+  {
+   "fieldname": "customer_order",
+   "fieldtype": "Link",
+   "label": "Customer Order",
+   "options": "Customer Order",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_conversion",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "converted_on",
+   "fieldtype": "Datetime",
+   "label": "Converted On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "converted_by",
+   "fieldtype": "Link",
+   "label": "Converted By",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "communication_section",
+   "fieldtype": "Section Break",
+   "label": "Communication Tracking"
+  },
+  {
+   "fieldname": "last_whatsapp_status",
+   "fieldtype": "Data",
+   "label": "Last WhatsApp Status"
+  },
+  {
+   "fieldname": "last_follow_up_on",
+   "fieldtype": "Datetime",
+   "label": "Last Follow-up On"
+  },
+  {
+   "fieldname": "next_follow_up_on",
+   "fieldtype": "Datetime",
+   "label": "Next Follow-up On"
+  },
+  {
+   "fieldname": "follow_up_notes",
+   "fieldtype": "Small Text",
+   "label": "Follow-up Notes"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-06-28 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Sugar Rush Bakes",
+ "name": "Custom Cake Request",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Administrator",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "customer_name",
+ "track_changes": 1
+}

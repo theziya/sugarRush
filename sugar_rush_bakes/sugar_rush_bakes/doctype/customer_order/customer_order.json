@@ -2,7 +2,7 @@
  "actions": [],
  "allow_import": 1,
  "autoname": "SRB-ORD-.YYYY.-.#####",
- "creation": "2026-06-26 16:00:00.000000",
+ "creation": "2026-06-26 16:00:00",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -202,12 +202,14 @@
    "fieldname": "subtotal",
    "fieldtype": "Currency",
    "label": "Subtotal",
+   "read_only": 1,
    "reqd": 1
   },
   {
    "fieldname": "discount_amount",
    "fieldtype": "Currency",
-   "label": "Discount Amount"
+   "label": "Discount Amount",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_totals",
@@ -228,6 +230,7 @@
    "fieldname": "grand_total",
    "fieldtype": "Currency",
    "label": "Grand Total",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -341,10 +344,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-06-26 16:00:00.000000",
+ "modified": "2026-06-29 14:54:26.493416",
  "modified_by": "Administrator",
  "module": "Sugar Rush Bakes",
  "name": "Customer Order",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

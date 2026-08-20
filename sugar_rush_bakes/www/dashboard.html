@@ -1,0 +1,92 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+<main class="srb-site srb-dashboard">
+	<section class="srb-dashboard-hero">
+		<div>
+			<p class="srb-kicker">Admin Dashboard</p>
+			<h1>Sugar Rush Bakes</h1>
+			<p class="srb-lede">A live view of orders, custom cake requests, payment attempts, WhatsApp logs, catalog setup, delivery setup, reports, and admin tools.</p>
+		</div>
+		<div class="srb-actions">
+			<a class="srb-button srb-button--primary" href="/app/sugar-rush-bakes">Desk Workspace</a>
+			<a class="srb-button" href="/app/customer-order/new-customer-order">New Order</a>
+			<a class="srb-button" href="/app/custom-cake-request/new-custom-cake-request">New Custom Cake Request</a>
+		</div>
+	</section>
+
+	<section class="srb-metrics">
+		{% for metric in metrics %}
+		<a class="srb-metric" href="{{ metric.route }}">
+			<span>{{ metric.label }}</span>
+			<strong>{{ metric.value }}</strong>
+		</a>
+		{% endfor %}
+	</section>
+
+	<section class="srb-dashboard-grid">
+		<div class="srb-panel">
+			<div class="srb-section__head">
+				<h2>Recent Orders</h2>
+				<a href="/app/customer-order">View All</a>
+			</div>
+			{% for order in recent_orders %}
+			<a class="srb-row" href="/app/customer-order/{{ order.name }}">
+				<span>{{ order.customer_name }}</span>
+				<small>{{ order.order_status }} · {{ order.payment_status }}</small>
+				<strong>{{ frappe.format_value(order.grand_total, {"fieldtype": "Currency", "options": "INR"}) }}</strong>
+			</a>
+			{% else %}
+			<p class="srb-empty">No orders yet.</p>
+			{% endfor %}
+		</div>
+
+		<div class="srb-panel">
+			<div class="srb-section__head">
+				<h2>Custom Cake Requests</h2>
+				<a href="/app/custom-cake-request">View All</a>
+			</div>
+			{% for request in custom_requests %}
+			<a class="srb-row" href="/app/custom-cake-request/{{ request.name }}">
+				<span>{{ request.customer_name }}</span>
+				<small>{{ request.status }}{% if request.priority %} · {{ request.priority }}{% endif %}</small>
+				<strong>{{ frappe.format_date(request.delivery_date) if request.delivery_date else "" }}</strong>
+			</a>
+			{% else %}
+			<p class="srb-empty">No custom cake requests yet.</p>
+			{% endfor %}
+		</div>
+
+		<div class="srb-panel">
+			<div class="srb-section__head">
+				<h2>Payment Logs</h2>
+				<a href="/app/payment-transaction">View All</a>
+			</div>
+			{% for payment in payment_logs %}
+			<a class="srb-row" href="/app/payment-transaction/{{ payment.name }}">
+				<span>{{ payment.customer_order or payment.name }}</span>
+				<small>{{ payment.transaction_type }} · {{ payment.payment_gateway }} · {{ payment.status }}</small>
+				<strong>{{ frappe.format_value(payment.amount, {"fieldtype": "Currency", "options": "INR"}) }}</strong>
+			</a>
+			{% else %}
+			<p class="srb-empty">No payment logs yet.</p>
+			{% endfor %}
+		</div>
+
+		<div class="srb-panel">
+			<div class="srb-section__head">
+				<h2>Everything</h2>
+				<a href="/app/sugar-rush-bakes">Workspace</a>
+			</div>
+			<div class="srb-link-list">
+				{% for link in links %}
+				<a href="{{ link.route }}">
+					<span>{{ link.label }}</span>
+					<small>{{ link.group }}</small>
+				</a>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+</main>
+{% endblock %}
