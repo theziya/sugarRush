@@ -1,8 +1,17 @@
 {
  "app": "sugar_rush_bakes",
- "charts": [],
- "content": "[{\"id\":\"srb_orders_today\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Orders Today\",\"col\":3}},{\"id\":\"srb_pending_orders\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Pending Orders\",\"col\":3}},{\"id\":\"srb_pending_ccr\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Pending Custom Cake Requests\",\"col\":3}},{\"id\":\"srb_revenue_today\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Revenue Today\",\"col\":3}},{\"id\":\"srb_spacer_1\",\"type\":\"spacer\",\"data\":{\"col\":12}}]",
- "creation": "2026-06-28 00:00:00.000000",
+ "charts": [
+  {
+   "chart_name": "Monthly Orders Chart",
+   "label": "Monthly Orders Trend"
+  },
+  {
+   "chart_name": "Order Status Breakdown Chart",
+   "label": "Order Status Breakdown"
+  }
+ ],
+ "content": "[{\"id\":\"srb_orders_today\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Orders Today\",\"col\":3}},{\"id\":\"srb_pending_orders\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Pending Orders\",\"col\":3}},{\"id\":\"srb_pending_ccr\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Pending Custom Cake Requests\",\"col\":3}},{\"id\":\"srb_revenue_today\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Revenue Today\",\"col\":3}},{\"id\":\"srb_spacer_1\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"srb_chart_monthly\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Monthly Orders Chart\",\"col\":6}},{\"id\":\"srb_chart_status\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Order Status Breakdown Chart\",\"col\":6}},{\"id\":\"srb_spacer_2\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"srb_card_quick_actions\",\"type\":\"card\",\"data\":{\"card_name\":\"Quick Actions\",\"links\":[{\"type\":\"Link\",\"link_type\":\"DocType\",\"link_to\":\"Customer Order\",\"doc_view\":\"New\",\"label\":\"+ Create New Order\"},{\"type\":\"Link\",\"link_type\":\"DocType\",\"link_to\":\"Custom Cake Request\",\"doc_view\":\"New\",\"label\":\"+ New Custom Cake Request\"},{\"type\":\"Link\",\"link_type\":\"DocType\",\"link_to\":\"SRB Customer\",\"doc_view\":\"New\",\"label\":\"+ Add Customer\"},{\"type\":\"Link\",\"link_type\":\"DocType\",\"link_to\":\"Coupon\",\"doc_view\":\"New\",\"label\":\"+ Create Coupon Code\"}],\"col\":6}},{\"id\":\"srb_card_reports_web\",\"type\":\"card\",\"data\":{\"card_name\":\"Management & Settings\",\"links\":[{\"type\":\"Link\",\"link_type\":\"DocType\",\"link_to\":\"Bakery Settings\",\"doc_view\":\"Form\",\"label\":\"\u2699\ufe0f Bakery General & WhatsApp Settings\"},{\"type\":\"Link\",\"link_type\":\"DocType\",\"link_to\":\"WhatsApp Message Log\",\"doc_view\":\"List\",\"label\":\"\ud83d\udcac WhatsApp Message Log & Status\"},{\"type\":\"Link\",\"link_type\":\"DocType\",\"link_to\":\"Payment Transaction\",\"doc_view\":\"List\",\"label\":\"\ud83d\udcb3 Payment Audit Logs\"}],\"col\":6}}]",
+ "creation": "2026-06-28 00:00:00",
  "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
@@ -211,7 +220,7 @@
    "type": "Link"
   }
  ],
- "modified": "2026-06-28 00:00:00.000000",
+ "modified": "2026-08-20 12:17:19.809838",
  "modified_by": "Administrator",
  "module": "Sugar Rush Bakes",
  "name": "Sugar Rush Bakes",
@@ -312,11 +321,6 @@
    "label": "Reports",
    "link_to": "Report",
    "type": "DocType"
-  },
-  {
-   "label": "Web Dashboard",
-   "type": "URL",
-   "url": "/dashboard"
   },
   {
    "doc_view": "New",

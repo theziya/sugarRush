@@ -3,7 +3,23 @@
 
 frappe.ui.form.on("Customer Order", {
     refresh(frm) {
-        // Custom form scripts can go here
+        if (!frm.is_new() && frm.doc.payment_status !== "Paid") {
+            frm.add_custom_button(__("Mark as Paid 💳"), function() {
+                frappe.confirm(
+                    `Record payment of ₹${frm.doc.grand_total} as Paid?`,
+                    function() {
+                        frm.set_value("amount_paid", frm.doc.grand_total);
+                        frm.set_value("payment_status", "Paid");
+                        frm.save().then(() => {
+                            frappe.show_alert({
+                                message: __("Order payment updated to Paid!"),
+                                indicator: "green"
+                            });
+                        });
+                    }
+                );
+            }).addClass("btn-primary");
+        }
     },
 
     setup(frm) {

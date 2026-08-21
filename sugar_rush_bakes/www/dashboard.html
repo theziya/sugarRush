@@ -1,88 +1,166 @@
 {% extends "templates/web.html" %}
 
 {% block page_content %}
-<main class="srb-site srb-dashboard">
-	<section class="srb-dashboard-hero">
-		<div>
-			<p class="srb-kicker">Admin Dashboard</p>
-			<h1>Sugar Rush Bakes</h1>
-			<p class="srb-lede">A live view of orders, custom cake requests, payment attempts, WhatsApp logs, catalog setup, delivery setup, reports, and admin tools.</p>
+<main class="srb-site srb-dashboard-exec">
+	<header class="srb-exec-header">
+		<div class="srb-exec-title">
+			<span class="srb-badge-live">Live Operations</span>
+			<h1>Sugar Rush Bakes Control Center</h1>
+			<p class="srb-exec-sub">Real-time overview of customer orders, custom cake inquiries, revenue stats, payments, and automated WhatsApp status.</p>
 		</div>
-		<div class="srb-actions">
-			<a class="srb-button srb-button--primary" href="/app/sugar-rush-bakes">Desk Workspace</a>
-			<a class="srb-button" href="/app/customer-order/new-customer-order">New Order</a>
-			<a class="srb-button" href="/app/custom-cake-request/new-custom-cake-request">New Custom Cake Request</a>
+		<div class="srb-exec-actions">
+			<a class="srb-btn srb-btn--primary" href="/app/customer-order/new-customer-order">
+				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+				New Order
+			</a>
+			<a class="srb-btn srb-btn--secondary" href="/app/custom-cake-request/new-custom-cake-request">
+				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+				New Cake Request
+			</a>
+			<a class="srb-btn srb-btn--ghost" href="/app/sugar-rush-bakes">Desk Desk View</a>
 		</div>
-	</section>
+	</header>
 
-	<section class="srb-metrics">
+	<section class="srb-exec-stats-grid">
 		{% for metric in metrics %}
-		<a class="srb-metric" href="{{ metric.route }}">
-			<span>{{ metric.label }}</span>
-			<strong>{{ metric.value }}</strong>
+		<a class="srb-stat-card" href="{{ metric.route }}">
+			<div class="srb-stat-header">
+				<span class="srb-stat-label">{{ metric.label }}</span>
+			</div>
+			<div class="srb-stat-value">{{ metric.value }}</div>
+			<span class="srb-stat-link">View list &rarr;</span>
 		</a>
 		{% endfor %}
 	</section>
 
-	<section class="srb-dashboard-grid">
-		<div class="srb-panel">
-			<div class="srb-section__head">
-				<h2>Recent Orders</h2>
-				<a href="/app/customer-order">View All</a>
+	<section class="srb-exec-main-grid">
+		<div class="srb-exec-card">
+			<div class="srb-exec-card-head">
+				<div>
+					<h3>Recent Customer Orders</h3>
+					<p>Latest standard and custom cake orders placed</p>
+				</div>
+				<a class="srb-card-action" href="/app/customer-order">View All Orders</a>
 			</div>
-			{% for order in recent_orders %}
-			<a class="srb-row" href="/app/customer-order/{{ order.name }}">
-				<span>{{ order.customer_name }}</span>
-				<small>{{ order.order_status }} · {{ order.payment_status }}</small>
-				<strong>{{ frappe.format_value(order.grand_total, {"fieldtype": "Currency", "options": "INR"}) }}</strong>
-			</a>
-			{% else %}
-			<p class="srb-empty">No orders yet.</p>
-			{% endfor %}
+			<div class="srb-table-wrapper">
+				<table class="srb-exec-table">
+					<thead>
+						<tr>
+							<th>Customer</th>
+							<th>Delivery Date</th>
+							<th>Status</th>
+							<th>Payment</th>
+							<th class="text-right">Grand Total</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for order in recent_orders %}
+						<tr onclick="window.location='/app/customer-order/{{ order.name }}'" style="cursor: pointer;">
+							<td>
+								<strong>{{ order.customer_name }}</strong>
+								<span class="sub-text">{{ order.name }}</span>
+							</td>
+							<td>{{ frappe.format_date(order.delivery_date) if order.delivery_date else "-" }}</td>
+							<td><span class="srb-status-pill status-{{ order.order_status | lower | replace(' ', '-') }}">{{ order.order_status }}</span></td>
+							<td><span class="srb-pay-pill pay-{{ order.payment_status | lower | replace(' ', '-') }}">{{ order.payment_status }}</span></td>
+							<td class="text-right"><strong>{{ frappe.format_value(order.grand_total, {"fieldtype": "Currency", "options": "INR"}) }}</strong></td>
+						</tr>
+						{% else %}
+						<tr><td colspan="5" class="text-center py-4 text-muted">No orders found.</td></tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
 		</div>
 
-		<div class="srb-panel">
-			<div class="srb-section__head">
-				<h2>Custom Cake Requests</h2>
-				<a href="/app/custom-cake-request">View All</a>
+		<div class="srb-exec-card">
+			<div class="srb-exec-card-head">
+				<div>
+					<h3>Custom Cake Requests</h3>
+					<p>Customer inquiries requiring admin quotation</p>
+				</div>
+				<a class="srb-card-action" href="/app/custom-cake-request">View All Requests</a>
 			</div>
-			{% for request in custom_requests %}
-			<a class="srb-row" href="/app/custom-cake-request/{{ request.name }}">
-				<span>{{ request.customer_name }}</span>
-				<small>{{ request.status }}{% if request.priority %} · {{ request.priority }}{% endif %}</small>
-				<strong>{{ frappe.format_date(request.delivery_date) if request.delivery_date else "" }}</strong>
-			</a>
-			{% else %}
-			<p class="srb-empty">No custom cake requests yet.</p>
-			{% endfor %}
+			<div class="srb-table-wrapper">
+				<table class="srb-exec-table">
+					<thead>
+						<tr>
+							<th>Customer</th>
+							<th>Delivery</th>
+							<th>Status</th>
+							<th class="text-right">Quoted Price</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for request in custom_requests %}
+						<tr onclick="window.location='/app/custom-cake-request/{{ request.name }}'" style="cursor: pointer;">
+							<td>
+								<strong>{{ request.customer_name }}</strong>
+								<span class="sub-text">{{ request.name }}</span>
+							</td>
+							<td>{{ frappe.format_date(request.delivery_date) if request.delivery_date else "-" }}</td>
+							<td><span class="srb-status-pill status-{{ request.status | lower | replace(' ', '-') }}">{{ request.status }}</span></td>
+							<td class="text-right"><strong>{{ frappe.format_value(request.quoted_price or 0, {"fieldtype": "Currency", "options": "INR"}) }}</strong></td>
+						</tr>
+						{% else %}
+						<tr><td colspan="4" class="text-center py-4 text-muted">No custom cake requests found.</td></tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+
+	<section class="srb-exec-secondary-grid">
+		<div class="srb-exec-card">
+			<div class="srb-exec-card-head">
+				<div>
+					<h3>Recent Payment Transactions</h3>
+					<p>Razorpay, UPI, COD and online payment logs</p>
+				</div>
+				<a class="srb-card-action" href="/app/payment-transaction">View Audit Logs</a>
+			</div>
+			<div class="srb-table-wrapper">
+				<table class="srb-exec-table">
+					<thead>
+						<tr>
+							<th>Transaction ID</th>
+							<th>Gateway</th>
+							<th>Status</th>
+							<th class="text-right">Amount</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for payment in payment_logs %}
+						<tr onclick="window.location='/app/payment-transaction/{{ payment.name }}'" style="cursor: pointer;">
+							<td>
+								<strong>{{ payment.customer_order or payment.name }}</strong>
+								<span class="sub-text">{{ payment.transaction_type }}</span>
+							</td>
+							<td>{{ payment.payment_gateway or "Manual" }}</td>
+							<td><span class="srb-pay-pill pay-{{ payment.status | lower | replace(' ', '-') }}">{{ payment.status }}</span></td>
+							<td class="text-right"><strong>{{ frappe.format_value(payment.amount, {"fieldtype": "Currency", "options": "INR"}) }}</strong></td>
+						</tr>
+						{% else %}
+						<tr><td colspan="4" class="text-center py-4 text-muted">No payment logs recorded.</td></tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
 		</div>
 
-		<div class="srb-panel">
-			<div class="srb-section__head">
-				<h2>Payment Logs</h2>
-				<a href="/app/payment-transaction">View All</a>
+		<div class="srb-exec-card">
+			<div class="srb-exec-card-head">
+				<div>
+					<h3>Quick Navigation & Setup</h3>
+					<p>Shortcuts to managing catalog, areas & settings</p>
+				</div>
 			</div>
-			{% for payment in payment_logs %}
-			<a class="srb-row" href="/app/payment-transaction/{{ payment.name }}">
-				<span>{{ payment.customer_order or payment.name }}</span>
-				<small>{{ payment.transaction_type }} · {{ payment.payment_gateway }} · {{ payment.status }}</small>
-				<strong>{{ frappe.format_value(payment.amount, {"fieldtype": "Currency", "options": "INR"}) }}</strong>
-			</a>
-			{% else %}
-			<p class="srb-empty">No payment logs yet.</p>
-			{% endfor %}
-		</div>
-
-		<div class="srb-panel">
-			<div class="srb-section__head">
-				<h2>Everything</h2>
-				<a href="/app/sugar-rush-bakes">Workspace</a>
-			</div>
-			<div class="srb-link-list">
+			<div class="srb-quick-links-grid">
 				{% for link in links %}
-				<a href="{{ link.route }}">
-					<span>{{ link.label }}</span>
-					<small>{{ link.group }}</small>
+				<a class="srb-quick-link-item" href="{{ link.route }}">
+					<span class="srb-quick-link-title">{{ link.label }}</span>
+					<span class="srb-quick-link-tag">{{ link.group }}</span>
 				</a>
 				{% endfor %}
 			</div>
@@ -90,3 +168,4 @@
 	</section>
 </main>
 {% endblock %}
+

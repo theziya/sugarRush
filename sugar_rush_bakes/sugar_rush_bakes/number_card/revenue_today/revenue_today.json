@@ -1,7 +1,7 @@
 {
  "aggregate_function_based_on": "grand_total",
  "color": "#0EA5E9",
- "creation": "2026-06-28 00:00:00.000000",
+ "creation": "2026-06-28 00:00:00",
  "currency": "INR",
  "docstatus": 0,
  "doctype": "Number Card",
@@ -13,7 +13,7 @@
  "is_public": 1,
  "is_standard": 1,
  "label": "Revenue Today",
- "modified": "2026-06-28 00:00:00.000000",
+ "modified": "2026-08-20 12:16:16.618019",
  "modified_by": "Administrator",
  "module": "Sugar Rush Bakes",
  "name": "Revenue Today",
@@ -21,7 +21,7 @@
  "parent_document_type": "",
  "report_function": "Sum",
  "show_full_number": 0,
- "show_percentage_stats": 1,
+ "show_percentage_stats": 0,
  "stats_time_interval": "Daily",
  "type": "Document Type"
 }
