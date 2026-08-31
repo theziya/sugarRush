@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function Navbar({ activeTab, setActiveTab, cartCount, favoritesCount, onOpenSearch }) {
+export default function Navbar({ activeTab, setActiveTab, cartCount, favoritesCount, onOpenSearch, onOpenPaymentPortal }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (

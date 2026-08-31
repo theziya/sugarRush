@@ -623,15 +623,34 @@ body {
   margin-top: 0.3rem;
 }
 
-/* Mobile Adjustments */
-@media (max-width: 768px) {
+/* Comprehensive Responsive & Adaptive Styles */
+@media (max-width: 1024px) {
   .srb-hero-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 2rem;
   }
 
   .srb-hero-title {
-    font-size: 2.4rem;
+    font-size: 2.8rem;
+  }
+
+  .srb-product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .srb-container {
+    padding: 0 1rem;
+  }
+
+  .srb-nav-inner {
+    height: 64px;
+  }
+
+  .srb-logo {
+    font-size: 1.2rem;
   }
 
   .srb-nav-menu {
@@ -642,12 +661,105 @@ body {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 72px;
+    top: 64px;
     left: 0;
     right: 0;
     background: white;
-    padding: 1.5rem;
+    padding: 1.25rem 1rem;
     border-bottom: 1px solid var(--border);
     box-shadow: var(--shadow-md);
+    gap: 0.75rem;
+    z-index: 105;
+  }
+
+  .srb-nav-menu.mobile-open .srb-nav-link {
+    width: 100%;
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    font-size: 1rem;
+  }
+
+  .srb-mobile-toggle {
+    display: flex !important;
+  }
+
+  .srb-hero {
+    padding: 2.5rem 0 2rem;
+  }
+
+  .srb-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .srb-hero-title {
+    font-size: 2.2rem;
+  }
+
+  .srb-hero-sub {
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .srb-filter-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .srb-category-pills {
+    width: 100%;
+  }
+
+  .srb-product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+
+  .srb-drawer {
+    width: 100%;
+    max-width: 100%;
+    padding: 1.25rem;
+  }
+
+  .srb-modal {
+    width: 95% !important;
+    max-width: 95% !important;
+    padding: 1.25rem !important;
+    border-radius: var(--radius-md) !important;
+  }
+
+  .srb-product-modal-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .srb-hero-title {
+    font-size: 1.85rem;
+  }
+
+  .srb-product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .srb-nav-actions {
+    gap: 0.4rem;
+  }
+
+  .srb-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .srb-card-img-wrapper {
+    height: 180px;
+  }
+
+  .srb-toast-container {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    max-width: calc(100% - 24px);
   }
 }

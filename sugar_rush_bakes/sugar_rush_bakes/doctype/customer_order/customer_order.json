@@ -44,6 +44,7 @@
   "column_break_pay",
   "payment_method",
   "payment_status",
+  "payments",
   "razorpay_order_id",
   "razorpay_payment_id",
   "upi_transaction_id",
@@ -274,6 +275,12 @@
    "label": "Payment Status",
    "options": "Needs Verification\nPending\nPaid\nPartially Paid\nFailed\nRejected\nRefunded",
    "reqd": 1
+  },
+  {
+   "fieldname": "payments",
+   "fieldtype": "Table",
+   "label": "Payment History & Proofs",
+   "options": "Customer Order Payment"
   },
   {
    "fieldname": "razorpay_order_id",

@@ -7,8 +7,10 @@ import { fetchCategories, fetchProducts, submitOrder, submitCustomCakeRequest, c
 // Reusable Components
 import Navbar from './components/Navbar';
 import ProductCard from './components/ProductCard';
+import ProductDetailModal from './components/ProductDetailModal';
 import CartDrawer from './components/CartDrawer';
 import CheckoutModal from './components/CheckoutModal';
+import PaymentTemplateModal from './components/PaymentTemplateModal';
 import CustomCakeBuilder from './components/CustomCakeBuilder';
 import OrderTracker from './components/OrderTracker';
 import QuickSearchModal from './components/QuickSearchModal';
@@ -22,6 +24,7 @@ export default function App() {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedProductModal, setSelectedProductModal] = useState(null);
   
   // State management
   const [cart, setCart] = useState(() => {
@@ -45,6 +48,8 @@ export default function App() {
   // Modals & Drawers
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const [isPaymentPortalOpen, setIsPaymentPortalOpen] = useState(false);
+  const [paymentPortalInitialData, setPaymentPortalInitialData] = useState(null);
   const [checkoutTotals, setCheckoutTotals] = useState({ subtotal: 0, discount: 0, deliveryCharge: 0, grandTotal: 0 });
 
   // Custom cake success reference
@@ -106,6 +111,9 @@ export default function App() {
           starting_price: 650, 
           short_description: '500g layered dark chocolate ganache made with 70% Belgian Cocoa & moist chocolate sponge.', 
           category: 'Cakes', 
+          product_weight_label: '500g / 1.1 lbs',
+          default_egg_type: 'Eggless',
+          serves: '4-6 Servings',
           thumbnail_image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600', 
           is_featured: 1 
         },
@@ -115,6 +123,9 @@ export default function App() {
           starting_price: 350, 
           short_description: '250g mini celebration bento cake with rich Philadelphia cream cheese frosting.', 
           category: 'Bento Cakes', 
+          product_weight_label: '250g Bento',
+          default_egg_type: 'Eggless',
+          serves: '1-2 Servings',
           thumbnail_image: 'https://images.unsplash.com/photo-1586788680434-30d324b2d46f?w=600' 
         },
         { 
@@ -123,6 +134,9 @@ export default function App() {
           starting_price: 490, 
           short_description: 'Box of 6 fudgy, crinkly-top dark chocolate brownies infused with pure butter.', 
           category: 'Brownies', 
+          product_weight_label: 'Box of 6 Pcs',
+          default_egg_type: 'Egg',
+          serves: '3-6 Servings',
           thumbnail_image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=600', 
           is_featured: 1 
         },
@@ -132,6 +146,9 @@ export default function App() {
           starting_price: 540, 
           short_description: 'Box of 6 signature brownies topped with thick Lotus Biscoff spread and crushed cookies.', 
           category: 'Brownies', 
+          product_weight_label: 'Box of 6 Pcs',
+          default_egg_type: 'Eggless',
+          serves: '3-6 Servings',
           thumbnail_image: 'https://images.unsplash.com/photo-1515037893149-de7f840978e2?w=600',
           is_featured: 1
         },
@@ -141,6 +158,9 @@ export default function App() {
           starting_price: 280, 
           short_description: '350ml tub with fresh Alphonso mango pulp, vanilla sponge, and whipped cream layers.', 
           category: 'Dessert Tubs', 
+          product_weight_label: '350ml Tub',
+          default_egg_type: 'Eggless',
+          serves: '1-2 Servings',
           thumbnail_image: 'https://images.unsplash.com/photo-1535141192574-5d4897c13136?w=600' 
         },
         { 
@@ -149,6 +169,9 @@ export default function App() {
           starting_price: 320, 
           short_description: '350ml layered tub of vanilla cake, housemade sea salted caramel, and roasted pecans.', 
           category: 'Dessert Tubs', 
+          product_weight_label: '350ml Tub',
+          default_egg_type: 'Eggless',
+          serves: '1-2 Servings',
           thumbnail_image: 'https://images.unsplash.com/photo-1587314168485-3236d6710814?w=600' 
         }
       ];
@@ -178,14 +201,24 @@ export default function App() {
     loadData();
   }, []);
 
+  // Helper to compute effective unit price of a product
+  const getProductUnitPrice = (product) => {
+    const base = parseFloat(product.starting_price) || 0;
+    const offer = parseFloat(product.offer_price) || 0;
+    return (offer > 0 && offer !== base) ? offer : base;
+  };
+
   // Cart operations
   const handleAddToCart = (product) => {
+    const unitPrice = getProductUnitPrice(product);
+    const itemQty = product.qty || 1;
+
     setCart(prev => {
       const existing = prev.find(item => item.name === product.name);
       if (existing) {
-        return prev.map(item => item.name === product.name ? { ...item, qty: item.qty + 1 } : item);
+        return prev.map(item => item.name === product.name ? { ...item, qty: item.qty + itemQty } : item);
       }
-      return [...prev, { ...product, qty: 1 }];
+      return [...prev, { ...product, starting_price: unitPrice, unit_price: unitPrice, qty: itemQty }];
     });
     addToast(`Added "${product.product_name}" to your cart!`, 'success');
   };
@@ -220,7 +253,7 @@ export default function App() {
     });
   };
 
-  const cartSubtotal = cart.reduce((acc, item) => acc + (item.starting_price || 500) * item.qty, 0);
+  const cartSubtotal = cart.reduce((acc, item) => acc + (item.unit_price || getProductUnitPrice(item)) * item.qty, 0);
 
   // Submissions
   const handleProceedCheckout = (totals) => {
@@ -230,10 +263,24 @@ export default function App() {
 
   const handleFinalOrderSubmit = async (formData) => {
     const orderItems = cart.map(i => ({
+      product: i.name,
       product_name: i.product_name,
+      product_category: i.category || i.category_name || '',
       qty: i.qty,
-      unit_price: i.starting_price || 500
+      unit_price: i.unit_price || getProductUnitPrice(i)
     }));
+
+    const paymentsPayload = formData.upi_transaction_id || formData.payment_proof_image || formData.payment_method ? [
+      {
+        payment_method: formData.payment_method || 'UPI',
+        amount: cartTotals.grandTotal,
+        payment_date: formData.delivery_date || new Date().toISOString().split('T')[0],
+        payment_status: formData.payment_method === 'UPI' ? 'Needs Verification' : 'Pending',
+        utr_number: formData.upi_transaction_id || '',
+        payment_proof_image: formData.payment_proof_image || '',
+        notes: formData.customer_notes || 'Website Checkout'
+      }
+    ] : [];
 
     const payload = {
       ...formData,
@@ -241,8 +288,9 @@ export default function App() {
       order_type: 'Standard',
       delivery_type: 'Delivery',
       order_status: 'Placed',
-      payment_status: 'Pending',
-      items: orderItems
+      payment_status: formData.payment_method === 'UPI' && formData.upi_transaction_id ? 'Needs Verification' : 'Pending',
+      items: orderItems,
+      payments: paymentsPayload
     };
 
     try {
@@ -302,6 +350,7 @@ export default function App() {
         cartCount={cart.reduce((a, b) => a + b.qty, 0)}
         favoritesCount={favorites.length}
         onOpenSearch={() => setIsSearchOpen(true)}
+        onOpenPaymentPortal={() => setIsPaymentPortalOpen(true)}
       />
 
       {/* Main Pages */}
@@ -408,6 +457,7 @@ export default function App() {
                       onUpdateQty={updateCartQty}
                       isFavorite={favorites.includes(product.name)}
                       onToggleFavorite={toggleFavorite}
+                      onSelectProduct={(prod) => setSelectedProductModal(prod)}
                     />
                   );
                 })}
@@ -488,7 +538,73 @@ export default function App() {
         onClose={() => setIsCheckoutOpen(false)}
         cartTotals={checkoutTotals}
         onSubmitOrder={handleFinalOrderSubmit}
+        onOpenPaymentPortal={(data) => {
+          setPaymentPortalInitialData(data);
+          setIsPaymentPortalOpen(true);
+        }}
       />
+
+      {/* Standalone Redesigned Payment Portal Modal */}
+      <PaymentTemplateModal
+        isOpen={isPaymentPortalOpen}
+        onClose={() => {
+          setIsPaymentPortalOpen(false);
+          setPaymentPortalInitialData(null);
+        }}
+        initialData={paymentPortalInitialData || {
+          totalAmount: checkoutTotals.grandTotal || 500,
+          amountPaid: checkoutTotals.grandTotal || 500
+        }}
+        onSavePayment={async (paymentData) => {
+          const payload = {
+            customer_name: paymentData.customer_name,
+            mobile_number: paymentData.mobile_number,
+            email: paymentData.email || '',
+            address: paymentData.address || '',
+            pincode: paymentData.pincode || '',
+            order_source: 'Website',
+            order_type: 'Standard',
+            delivery_type: 'Delivery',
+            delivery_date: paymentData.payment_date || new Date().toISOString().split('T')[0],
+            order_status: 'Placed',
+            payment_status: paymentData.payment_status || 'Paid',
+            items: cart.length ? cart.map(i => ({ product_name: i.product_name, qty: i.qty, unit_price: i.starting_price || 500 })) : [{ product_name: 'Custom Order', qty: 1, unit_price: paymentData.total_amount }],
+            subtotal: paymentData.total_amount,
+            grand_total: paymentData.total_amount,
+            amount_paid: paymentData.amount_paid,
+            upi_transaction_id: paymentData.transaction_ref || '',
+            payment_proof_image: paymentData.payment_proof_image || '',
+            payments: [
+              {
+                payment_method: paymentData.payment_method || 'UPI',
+                amount: paymentData.amount_paid,
+                payment_date: paymentData.payment_date,
+                payment_status: paymentData.payment_status,
+                utr_number: paymentData.transaction_ref || '',
+                payment_proof_image: paymentData.payment_proof_image || '',
+                notes: paymentData.notes || 'Recorded via Payment Portal'
+              }
+            ]
+          };
+          await submitOrder(payload);
+          setCart([]);
+          addToast(`🎉 Payment of ₹${paymentData.amount_paid} recorded & stored in Payment Child Table for ${paymentData.customer_name}!`, 'success');
+          setActiveTab('track');
+        }}
+      />
+
+      {/* Product Detail Modal */}
+      {selectedProductModal && (
+        <ProductDetailModal
+          productName={selectedProductModal.name}
+          initialProduct={selectedProductModal}
+          isOpen={!!selectedProductModal}
+          onClose={() => setSelectedProductModal(null)}
+          onAddToCart={handleAddToCart}
+          cartQty={cart.find(i => i.name === selectedProductModal.name)?.qty || 0}
+          onUpdateQty={updateCartQty}
+        />
+      )}
 
       {/* Quick Search Command Modal */}
       <QuickSearchModal 

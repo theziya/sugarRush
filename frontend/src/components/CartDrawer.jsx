@@ -44,7 +44,7 @@ export default function CartDrawer({ isOpen, onClose, cart, updateQty, removeIte
                   <img src={item.thumbnail_image || item.main_image || 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600'} alt={item.product_name} style={{ width: '60px', height: '60px', borderRadius: '8px', objectFit: 'cover' }} />
                   <div style={{ flexGrow: 1 }}>
                     <h4 style={{ fontSize: '0.95rem', fontWeight: 700 }}>{item.product_name}</h4>
-                    <p style={{ color: 'var(--primary)', fontWeight: 800, fontSize: '0.9rem' }}>₹{item.starting_price || 500}</p>
+                    <p style={{ color: 'var(--primary)', fontWeight: 800, fontSize: '0.9rem' }}>₹{item.unit_price || item.starting_price || 500}</p>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: '#f1f5f9', padding: '0.2rem 0.6rem', borderRadius: '8px' }}>
                     <button onClick={() => updateQty(item.name, -1)} style={{ border: 'none', background: 'none', cursor: 'pointer', fontWeight: 800 }}>-</button>

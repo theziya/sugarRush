@@ -76,7 +76,7 @@ export async function fetchCategories() {
 export async function fetchProducts() {
   try {
     const res = await fetch(
-      '/api/resource/Product?fields=["name","product_name","category","starting_price","offer_price","show_price","thumbnail_image","main_image","short_description","is_featured"]&filters=[["is_active","=",1]]',
+      '/api/resource/Product?fields=["name","product_name","category","starting_price","offer_price","show_price","thumbnail_image","main_image","short_description","is_featured","is_best_seller","product_weight_label","default_egg_type","serves","is_eggless_available"]&filters=[["is_active","=",1]]',
       {
         method: "GET",
         credentials: "same-origin",
@@ -92,6 +92,27 @@ export async function fetchProducts() {
   } catch (err) {
     console.error("Error fetching products:", err);
     return [];
+  }
+}
+
+export async function fetchProductDetails(productName) {
+  try {
+    const res = await fetch(
+      `/api/resource/Product/${encodeURIComponent(productName)}`,
+      {
+        method: "GET",
+        credentials: "same-origin",
+        headers: {
+          "Accept": "application/json",
+        },
+      }
+    );
+
+    const data = await handleResponse(res);
+    return data.data || null;
+  } catch (err) {
+    console.error("Error fetching single product details:", err);
+    return null;
   }
 }
 
@@ -195,6 +216,26 @@ export async function fetchCustomerDetails(query) {
   } catch (err) {
     console.error("Error fetching customer details:", err);
     return null;
+  }
+}
+
+export async function createNewCustomer(payload) {
+  try {
+    const res = await fetch(
+      "/api/method/sugar_rush_bakes.sugar_rush_bakes.doctype.customer_order.customer_order.create_customer",
+      {
+        method: "POST",
+        headers: getHeaders(),
+        credentials: "same-origin",
+        body: JSON.stringify(payload),
+      }
+    );
+
+    const data = await handleResponse(res);
+    return data.message || null;
+  } catch (err) {
+    console.error("Error creating customer:", err);
+    throw err;
   }
 }
 
