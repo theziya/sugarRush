@@ -2,6 +2,7 @@
  "actions": [],
  "allow_bulk_edit": 1,
  "allow_rename": 1,
+ "autoname": "field:area_name",
  "creation": "2026-06-24 10:37:45.587629",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -18,7 +19,8 @@
   {
    "fieldname": "area_name",
    "fieldtype": "Data",
-   "label": "Area Name"
+   "label": "Area Name",
+   "unique": 1
   },
   {
    "fieldname": "pincode",
@@ -55,10 +57,11 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-06-24 10:48:16.484329",
+ "modified": "2026-06-28 19:21:04.144573",
  "modified_by": "Administrator",
  "module": "Sugar Rush Bakes",
  "name": "Serviceable Area",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

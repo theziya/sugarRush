@@ -1,0 +1,279 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "SRB-PAY-.#####",
+ "creation": "2026-06-28 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "transaction_details_section",
+  "customer_order",
+  "customer",
+  "column_break_transaction",
+  "transaction_type",
+  "payment_gateway",
+  "amount_details_section",
+  "amount",
+  "currency",
+  "column_break_amount",
+  "status",
+  "paid_on",
+  "gateway_details_section",
+  "gateway_order_id",
+  "gateway_payment_id",
+  "gateway_signature",
+  "column_break_gateway",
+  "payment_reference",
+  "verification_section",
+  "is_verified",
+  "verified_on",
+  "verified_by",
+  "column_break_verification",
+  "verification_response",
+  "payloads_section",
+  "request_payload",
+  "response_payload",
+  "failure_section",
+  "failure_reason",
+  "refund_section",
+  "refund_amount",
+  "refund_reference",
+  "column_break_refund",
+  "refund_date",
+  "notes_section",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "transaction_details_section",
+   "fieldtype": "Section Break",
+   "label": "Transaction Details"
+  },
+  {
+   "fieldname": "customer_order",
+   "fieldtype": "Link",
+   "label": "Customer Order",
+   "options": "Customer Order",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "SRB Customer"
+  },
+  {
+   "fieldname": "column_break_transaction",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "transaction_type",
+   "fieldtype": "Select",
+   "label": "Transaction Type",
+   "options": "Payment\nRefund\nPartial Payment",
+   "reqd": 1
+  },
+  {
+   "fieldname": "payment_gateway",
+   "fieldtype": "Select",
+   "label": "Payment Gateway",
+   "options": "Razorpay\nUPI\nBank\nManual",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amount_details_section",
+   "fieldtype": "Section Break",
+   "label": "Amount Details"
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "label": "Amount",
+   "reqd": 1
+  },
+  {
+   "default": "INR",
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "column_break_amount",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Initiated\nSuccess\nFailed\nRefunded",
+   "reqd": 1
+  },
+  {
+   "fieldname": "paid_on",
+   "fieldtype": "Datetime",
+   "label": "Paid On"
+  },
+  {
+   "fieldname": "gateway_details_section",
+   "fieldtype": "Section Break",
+   "label": "Gateway Details"
+  },
+  {
+   "fieldname": "gateway_order_id",
+   "fieldtype": "Data",
+   "label": "Gateway Order ID"
+  },
+  {
+   "fieldname": "gateway_payment_id",
+   "fieldtype": "Data",
+   "label": "Gateway Payment ID"
+  },
+  {
+   "fieldname": "gateway_signature",
+   "fieldtype": "Data",
+   "label": "Gateway Signature"
+  },
+  {
+   "fieldname": "column_break_gateway",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "payment_reference",
+   "fieldtype": "Data",
+   "label": "Payment Reference"
+  },
+  {
+   "fieldname": "verification_section",
+   "fieldtype": "Section Break",
+   "label": "Verification"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_verified",
+   "fieldtype": "Check",
+   "label": "Is Verified"
+  },
+  {
+   "fieldname": "verified_on",
+   "fieldtype": "Datetime",
+   "label": "Verified On"
+  },
+  {
+   "fieldname": "verified_by",
+   "fieldtype": "Link",
+   "label": "Verified By",
+   "options": "User"
+  },
+  {
+   "fieldname": "column_break_verification",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "verification_response",
+   "fieldtype": "Code",
+   "label": "Verification Response"
+  },
+  {
+   "fieldname": "payloads_section",
+   "fieldtype": "Section Break",
+   "label": "Payloads"
+  },
+  {
+   "fieldname": "request_payload",
+   "fieldtype": "Code",
+   "label": "Request Payload"
+  },
+  {
+   "fieldname": "response_payload",
+   "fieldtype": "Code",
+   "label": "Response Payload"
+  },
+  {
+   "fieldname": "failure_section",
+   "fieldtype": "Section Break",
+   "label": "Failure"
+  },
+  {
+   "fieldname": "failure_reason",
+   "fieldtype": "Small Text",
+   "label": "Failure Reason"
+  },
+  {
+   "fieldname": "refund_section",
+   "fieldtype": "Section Break",
+   "label": "Refund"
+  },
+  {
+   "fieldname": "refund_amount",
+   "fieldtype": "Currency",
+   "label": "Refund Amount"
+  },
+  {
+   "fieldname": "refund_reference",
+   "fieldtype": "Data",
+   "label": "Refund Reference"
+  },
+  {
+   "fieldname": "column_break_refund",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "refund_date",
+   "fieldtype": "Datetime",
+   "label": "Refund Date"
+  },
+  {
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-06-28 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Sugar Rush Bakes",
+ "name": "Payment Transaction",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Administrator",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
