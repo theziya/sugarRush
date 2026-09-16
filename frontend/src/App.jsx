@@ -24,7 +24,9 @@ export default function App() {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [menuSearchQuery, setMenuSearchQuery] = useState('');
   const [selectedProductModal, setSelectedProductModal] = useState(null);
+
   
   // State management
   const [cart, setCart] = useState(() => {
@@ -273,7 +275,7 @@ export default function App() {
     const paymentsPayload = formData.upi_transaction_id || formData.payment_proof_image || formData.payment_method ? [
       {
         payment_method: formData.payment_method || 'UPI',
-        amount: cartTotals.grandTotal,
+        amount: checkoutTotals.grandTotal,
         payment_date: formData.delivery_date || new Date().toISOString().split('T')[0],
         payment_status: formData.payment_method === 'UPI' ? 'Needs Verification' : 'Pending',
         utr_number: formData.upi_transaction_id || '',
@@ -281,6 +283,7 @@ export default function App() {
         notes: formData.customer_notes || 'Website Checkout'
       }
     ] : [];
+
 
     const payload = {
       ...formData,
@@ -332,9 +335,21 @@ export default function App() {
     }
   };
 
-  const filteredProducts = selectedCategory === 'All'
-    ? products
-    : products.filter(p => p.category === selectedCategory || p.category_name === selectedCategory);
+  const filteredProducts = products.filter(p => {
+    const matchesCat = selectedCategory === 'All'
+      ? true
+      : (p.category === selectedCategory || p.category_name === selectedCategory);
+
+    const q = menuSearchQuery.toLowerCase().trim();
+    const matchesSearch = !q ||
+      (p.product_name && p.product_name.toLowerCase().includes(q)) ||
+      (p.short_description && p.short_description.toLowerCase().includes(q)) ||
+      (p.category && p.category.toLowerCase().includes(q)) ||
+      (p.default_egg_type && p.default_egg_type.toLowerCase().includes(q));
+
+    return matchesCat && matchesSearch;
+  });
+
 
   const favoriteProducts = products.filter(p => favorites.includes(p.name));
 
@@ -356,80 +371,214 @@ export default function App() {
       {/* Main Pages */}
       {activeTab === 'menu' && (
         <>
-          {/* Hero Banner */}
-          <header className="srb-hero animate-fade">
-            <div className="srb-container srb-hero-grid">
-              <div>
-                <div className="srb-hero-pill">
-                  <span>✨ Handcrafted Daily</span>
-                  <span>•</span>
-                  <span>100% Fresh Ingredients</span>
-                </div>
-                <h1 className="srb-hero-title">
-                  Artisan Cakes & <span>Fresh Bakes</span>
+          {/* Top Bar Header (Reference: Menu - Ovenly Atelier - Order Now) */}
+          <header className="srb-atelier-hero animate-fade">
+            <div className="srb-hero-full-bg">
+              <img 
+                src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=1600&auto=format&fit=crop" 
+                alt="Freshly baked butter croissants"
+                className="srb-hero-bg-img"
+              />
+              <div className="srb-hero-gradient-overlay" />
+              
+              <div className="srb-container srb-hero-content-wrapper">
+                <div className="srb-hero-badge-tag">Freshly baked every sunrise</div>
+                
+                <h1 className="srb-hero-serif-title">
+                  Crafted with warmth,<br />
+                  butter & love.
                 </h1>
-                <p className="srb-hero-sub">
-                  Order custom celebration cakes, bento boxes, Belgian fudge brownies, and gourmet dessert tubs baked fresh for your special moments.
+                
+                <p className="srb-hero-serif-sub">
+                  Artisan breads, buttery pastries, and handcrafted cakes baked fresh every morning using slow fermentation and premium ingredients.
                 </p>
-                <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '0.5rem' }}>
-                  <button className="srb-btn srb-btn-primary" onClick={() => document.getElementById('menu-section').scrollIntoView({ behavior: 'smooth' })}>
-                    Explore Menu 🍰
+
+                <div className="srb-hero-cta-row">
+                  <button 
+                    className="srb-btn srb-btn-pill-primary"
+                    onClick={() => document.getElementById('bestsellers-section')?.scrollIntoView({ behavior: 'smooth' })}
+                  >
+                    Explore Menu
                   </button>
-                  <button className="srb-btn srb-btn-secondary" onClick={() => setActiveTab('custom')}>
-                    Custom Cake Wizard ✨
+                  <button 
+                    className="srb-btn srb-btn-pill-outline"
+                    onClick={() => setActiveTab('custom')}
+                  >
+                    Custom Cakes
                   </button>
                 </div>
 
-                {/* Trust Signal Row */}
-                <div className="srb-hero-trust">
-                  <div className="srb-trust-item">
-                    <span style={{ color: '#f59e0b' }}>★★★★★</span>
-                    <span>4.9/5 Rating</span>
-                  </div>
-                  <div className="srb-trust-item">
-                    <span>🛍️ 1,200+ Happy Orders Delivered</span>
-                  </div>
-                  <div className="srb-trust-item">
-                    <span>🚀 Same Day City Delivery</span>
-                  </div>
+                <div className="srb-badge-stamp">
+                  <span className="srb-stamp-year">EST. 1988</span>
+                  <span className="srb-stamp-text">HANDMADE DAILY</span>
                 </div>
               </div>
 
-              <div style={{ position: 'relative' }}>
-                <img 
-                  src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600" 
-                  alt="Sugar Rush Signature Cake" 
-                  style={{ width: '100%', height: '360px', objectFit: 'cover', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-lg)' }} 
-                />
+              {/* Curved Bottom Wave / Divider */}
+              <div className="srb-hero-wave-divider">
+                <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                  <path d="M0,0 C480,100 960,100 1440,0 L1440,120 L0,120 Z" fill="var(--bg-cream)"></path>
+                </svg>
               </div>
             </div>
           </header>
 
-          {/* Menu Catalog Section */}
-          <main id="menu-section" className="srb-container" style={{ padding: '4rem 1.5rem' }}>
-            <div className="srb-filter-bar">
-              <div>
-                <h2 style={{ fontSize: '1.8rem', fontWeight: 900, color: 'var(--dark)' }}>Our Bake Collection</h2>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.92rem' }}>Filter by category to discover your favorite sweet treats.</p>
+          {/* Section 1: Our Best Sellers (Featured Favorites) */}
+          <section id="bestsellers-section" className="srb-section srb-container animate-fade">
+            <div className="srb-section-header text-center">
+              <span className="srb-sub-heading">FEATURED FAVORITES</span>
+              <h2 className="srb-serif-heading">Our Best Sellers</h2>
+              <p className="srb-serif-lead">The pastries our guests return for every morning.</p>
+            </div>
+
+            {loading ? (
+              <SkeletonGrid count={3} />
+            ) : (
+              <div className="srb-bestseller-grid">
+                {products.slice(0, 3).map(product => {
+                  const cartItem = cart.find(i => i.name === product.name);
+                  return (
+                    <ProductCard 
+                      key={product.name}
+                      product={product}
+                      onAddToCart={handleAddToCart}
+                      cartQty={cartItem ? cartItem.qty : 0}
+                      onUpdateQty={updateCartQty}
+                      isFavorite={favorites.includes(product.name)}
+                      onToggleFavorite={toggleFavorite}
+                      onSelectProduct={(p) => setSelectedProductModal(p)}
+                    />
+                  );
+                })}
+              </div>
+            )}
+
+            <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
+              <button 
+                className="srb-btn srb-btn-serif-link"
+                onClick={() => document.getElementById('full-menu-section')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                View Full Menu ▾
+              </button>
+            </div>
+          </section>
+
+          {/* Section 2: Baking happiness every single morning */}
+          <section className="srb-section srb-happiness-section">
+            <div className="srb-container srb-happiness-grid">
+              <div className="srb-happiness-left">
+                <span className="srb-sub-heading">DAILY SPIRIT</span>
+                <h2 className="srb-serif-heading">
+                  Baking happiness every single morning.
+                </h2>
+                <div className="srb-happiness-img-box">
+                  <img 
+                    src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=800&auto=format&fit=crop" 
+                    alt="Baker hands kneading dough"
+                    className="srb-organic-img"
+                  />
+                </div>
               </div>
 
-              <div className="srb-category-pills">
-                <button 
-                  className={`srb-pill-btn ${selectedCategory === 'All' ? 'active' : ''}`}
-                  onClick={() => setSelectedCategory('All')}
-                >
-                  All Categories
-                </button>
-                {categories.map(c => (
-                  <button 
-                    key={c.name}
-                    className={`srb-pill-btn ${selectedCategory === (c.category_name || c.name) ? 'active' : ''}`}
-                    onClick={() => setSelectedCategory(c.category_name || c.name)}
-                  >
-                    {c.category_name || c.name}
-                  </button>
-                ))}
+              <div className="srb-happiness-right">
+                <div className="srb-story-card">
+                  <p>
+                    Every morning before sunrise, our bakers begin the quiet ritual of creating fresh pastries the way they were meant to be made—slowly, carefully, with attention.
+                  </p>
+                  <p>
+                    We use only non-GMO organic flour, European butter, and stone-ground spices. Every croissant fold, sourdough loaf, and cake sponge is shaped by hand, raised with patience.
+                  </p>
+                  <p className="srb-highlight-quote">
+                    This isn't just baking. This is a morning ritual. This is our gift to you.
+                  </p>
+                </div>
+
+                <div className="srb-happiness-side-img">
+                  <img 
+                    src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?q=80&w=600&auto=format&fit=crop" 
+                    alt="Dusting flour on artisan bread"
+                    className="srb-organic-img-vertical"
+                  />
+                </div>
               </div>
+            </div>
+
+            {/* Stat Counters Bar */}
+            <div className="srb-container srb-stats-bar">
+              <div className="srb-stat-item">
+                <div className="srb-stat-number">10+</div>
+                <div className="srb-stat-label">YEARS EXPERIENCE</div>
+              </div>
+              <div className="srb-stat-item">
+                <div className="srb-stat-number">5K+</div>
+                <div className="srb-stat-label">LOAVES MONTHLY</div>
+              </div>
+              <div className="srb-stat-item">
+                <div className="srb-stat-number">100%</div>
+                <div className="srb-stat-label">HANDMADE</div>
+              </div>
+              <div className="srb-stat-item">
+                <div className="srb-stat-number">1K+</div>
+                <div className="srb-stat-label">HAPPY CUSTOMERS</div>
+              </div>
+            </div>
+          </section>
+
+          {/* Section 3: Why people return every morning */}
+          <section className="srb-section srb-why-section">
+            <div className="srb-container">
+              <div className="srb-section-header text-center">
+                <h2 className="srb-serif-heading">Why people return every morning</h2>
+              </div>
+
+              <div className="srb-pillars-grid">
+                <div className="srb-pillar-card">
+                  <div className="srb-pillar-icon">🥐</div>
+                  <h3>Fresh Daily</h3>
+                  <p>Every pastry is baked before sunrise. Never frozen, never preserved. Pure fresh goodness.</p>
+                </div>
+                <div className="srb-pillar-card">
+                  <div className="srb-pillar-icon">🌾</div>
+                  <h3>Organic Ingredients</h3>
+                  <p>We source only organic flour, French AOP butter, and seasonal fruits from local farms.</p>
+                </div>
+                <div className="srb-pillar-card">
+                  <div className="srb-pillar-icon">⏳</div>
+                  <h3>Slow Fermented</h3>
+                  <p>Our sourdough ferments for 48 hours for rich flavor, easy digestion, and perfect crust.</p>
+                </div>
+                <div className="srb-pillar-card">
+                  <div className="srb-pillar-icon">💛</div>
+                  <h3>Handmade Passion</h3>
+                  <p>Every cake is shaped by hand, baked with love, and decorated by our master pastaios.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Section 4: Full Menu & Handcrafted Collection */}
+          <section id="full-menu-section" className="srb-section srb-container">
+            <div className="srb-section-header text-center" style={{ marginBottom: '2rem' }}>
+              <span className="srb-sub-heading">CATEGORY MENU</span>
+              <h2 className="srb-serif-heading">Discover our handcrafted collection</h2>
+            </div>
+
+            <div className="srb-category-pills" style={{ justifyContent: 'center', marginBottom: '2.5rem' }}>
+              {categories.map(c => {
+                const catName = c.category_name || c.name;
+                const isAll = catName === 'all' || catName === 'All';
+                const label = isAll ? 'All Bakes' : catName;
+
+                return (
+                  <button 
+                    key={c.name || catName}
+                    className={`srb-pill-btn ${selectedCategory === catName || (selectedCategory === 'All' && isAll) ? 'active' : ''}`}
+                    onClick={() => setSelectedCategory(isAll ? 'All' : catName)}
+                  >
+                    {label}
+                  </button>
+                );
+              })}
             </div>
 
             {loading ? (
@@ -440,11 +589,12 @@ export default function App() {
               <EmptyState 
                 icon="🔍"
                 title="No Products Found"
-                description={`We couldn't find any bakes in category "${selectedCategory}".`}
-                actionText="View All Products"
-                onAction={() => setSelectedCategory('All')}
+                description={`We couldn't find any bakes matching your selection.`}
+                actionText="Reset All Filters"
+                onAction={() => { setSelectedCategory('All'); setMenuSearchQuery(''); }}
               />
             ) : (
+
               <div className="srb-product-grid">
                 {filteredProducts.map(product => {
                   const cartItem = cart.find(i => i.name === product.name);
@@ -457,13 +607,13 @@ export default function App() {
                       onUpdateQty={updateCartQty}
                       isFavorite={favorites.includes(product.name)}
                       onToggleFavorite={toggleFavorite}
-                      onSelectProduct={(prod) => setSelectedProductModal(prod)}
+                      onSelectProduct={(p) => setSelectedProductModal(p)}
                     />
                   );
                 })}
               </div>
             )}
-          </main>
+          </section>
         </>
       )}
 
@@ -611,7 +761,10 @@ export default function App() {
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}
         products={products}
-        onSelectProduct={handleAddToCart}
+        onSelectProduct={(p) => setSelectedProductModal(p)}
+        onAddToCart={handleAddToCart}
+        cart={cart}
+        onUpdateQty={updateCartQty}
       />
 
       {/* Footer */}

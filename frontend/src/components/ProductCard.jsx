@@ -8,16 +8,13 @@ export default function ProductCard({ product, onAddToCart, cartQty = 0, onUpdat
   const hasValidOffer = rawOfferPrice > 0 && rawOfferPrice !== basePrice;
   const activePrice = hasValidOffer ? rawOfferPrice : basePrice;
 
-  const isBestSeller = product.is_featured || product.is_best_seller;
-
   const handleImageError = (e) => {
     e.target.onerror = null;
     e.target.src = FALLBACK_IMAGE_SVG;
   };
 
   const handleCardClick = (e) => {
-    // If user clicked fav button or add/update buttons, don't trigger modal
-    if (e.target.closest('.srb-fav-btn') || e.target.closest('.srb-card-foot')) return;
+    if (e.target.closest('.srb-fav-btn') || e.target.closest('.srb-card-action-btn')) return;
     if (onSelectProduct) {
       onSelectProduct(product);
     }
@@ -27,7 +24,6 @@ export default function ProductCard({ product, onAddToCart, cartQty = 0, onUpdat
     <div 
       className="srb-product-card animate-fade" 
       onClick={handleCardClick}
-      style={{ cursor: onSelectProduct ? 'pointer' : 'default' }}
     >
       <div className="srb-card-img-wrapper">
         <img 
@@ -51,30 +47,8 @@ export default function ProductCard({ product, onAddToCart, cartQty = 0, onUpdat
       </div>
 
       <div className="srb-card-body">
-        <div className="srb-card-tag">
-          {product.category || product.category_name || 'Artisan Bake'} {isBestSeller && '• 🔥 Bestseller'}
-        </div>
-        <h3 className="srb-card-title">{product.product_name}</h3>
-        <p className="srb-card-desc">{product.short_description}</p>
-        
-        {/* Product Details Meta Pills */}
-        <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', margin: '0.5rem 0 0.75rem 0' }}>
-          {product.product_weight_label && (
-            <span style={{ fontSize: '0.72rem', background: '#f1f5f9', color: '#475569', padding: '0.15rem 0.5rem', borderRadius: '4px', fontWeight: 600 }}>
-              ⚖️ {product.product_weight_label}
-            </span>
-          )}
-          {product.default_egg_type && (
-            <span style={{ fontSize: '0.72rem', background: product.default_egg_type === 'Eggless' ? '#d1fae5' : '#fef3c7', color: product.default_egg_type === 'Eggless' ? '#065f46' : '#92400e', padding: '0.15rem 0.5rem', borderRadius: '74px', fontWeight: 700 }}>
-              {product.default_egg_type === 'Eggless' ? '🌱 Eggless' : '🥚 Contains Egg'}
-            </span>
-          )}
-          {product.serves && (
-            <span style={{ fontSize: '0.72rem', background: '#f3e8ff', color: '#6b21a8', padding: '0.15rem 0.5rem', borderRadius: '4px', fontWeight: 600 }}>
-              👥 {product.serves}
-            </span>
-          )}
-        </div>
+        <h3 className="srb-card-serif-title">{product.product_name}</h3>
+        <p className="srb-card-serif-desc">{product.short_description}</p>
 
         <div className="srb-card-foot" onClick={e => e.stopPropagation()}>
           <div className="srb-price-box">
@@ -102,11 +76,13 @@ export default function ProductCard({ product, onAddToCart, cartQty = 0, onUpdat
             </div>
           ) : (
             <button 
-              className="srb-btn srb-btn-primary" 
-              style={{ padding: '0.5rem 1rem', fontSize: '0.85rem' }}
-              onClick={() => onAddToCart(product)}
+              className="srb-btn srb-btn-serif-small srb-card-action-btn" 
+              onClick={(e) => {
+                e.stopPropagation();
+                onAddToCart(product);
+              }}
             >
-              + Add
+              Add to Cart 🛒
             </button>
           )}
         </div>

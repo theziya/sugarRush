@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && cp ../sugar_rush_bakes/public/frontend/index.html ../sugar_rush_bakes/www/index.html",
     "lint": "oxlint",
     "preview": "vite preview"
   },

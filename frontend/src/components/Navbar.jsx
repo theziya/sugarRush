@@ -1,27 +1,37 @@
 import React, { useState } from 'react';
 
-export default function Navbar({ activeTab, setActiveTab, cartCount, favoritesCount, onOpenSearch, onOpenPaymentPortal }) {
+export default function Navbar({ activeTab, setActiveTab, cartCount, favoritesCount, onOpenSearch }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <nav className="srb-nav">
       <div className="srb-container srb-nav-inner">
-        <a href="#" className="srb-logo" onClick={() => setActiveTab('menu')}>
-          🍰 Sugar Rush Bakes
+        {/* Mobile Menu Toggle Button (Visible on mobile only) */}
+        <button 
+          className="srb-icon-btn srb-mobile-toggle" 
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle navigation menu"
+        >
+          {mobileMenuOpen ? '✕' : '☰'}
+        </button>
+
+        <a href="#" className="srb-atelier-logo" onClick={(e) => { e.preventDefault(); setActiveTab('menu'); }}>
+          Sugar Rush Bakes
         </a>
 
+        {/* Desktop Navigation Links */}
         <div className={`srb-nav-menu ${mobileMenuOpen ? 'mobile-open' : ''}`}>
           <button 
             className={`srb-nav-link ${activeTab === 'menu' ? 'active' : ''}`}
             onClick={() => { setActiveTab('menu'); setMobileMenuOpen(false); }}
           >
-            Menu & Bakes
+            Our Menu
           </button>
           <button 
             className={`srb-nav-link ${activeTab === 'custom' ? 'active' : ''}`}
             onClick={() => { setActiveTab('custom'); setMobileMenuOpen(false); }}
           >
-            Custom Cakes Wizard
+            Custom Cakes
           </button>
           <button 
             className={`srb-nav-link ${activeTab === 'track' ? 'active' : ''}`}
@@ -33,48 +43,33 @@ export default function Navbar({ activeTab, setActiveTab, cartCount, favoritesCo
             className={`srb-nav-link ${activeTab === 'favorites' ? 'active' : ''}`}
             onClick={() => { setActiveTab('favorites'); setMobileMenuOpen(false); }}
           >
-            Saved ❤️ ({favoritesCount})
+            Favorites {favoritesCount > 0 ? `(${favoritesCount})` : ''}
           </button>
         </div>
 
+        {/* Action Controls & Search */}
         <div className="srb-nav-actions">
-          <a 
-            href="/desk" 
-            className="srb-btn srb-btn-secondary" 
-            style={{ fontSize: '0.85rem', padding: '0.5rem 1rem' }}
-            title="Admin Login & Desk Dashboard"
-          >
-            🔐 Admin Login
-          </a>
-
           <button 
-            className="srb-icon-btn" 
+            className="srb-nav-search-btn" 
             onClick={onOpenSearch} 
-            title="Search Products (Cmd + K)"
+            title="Search Products (Cmd + K or Ctrl + K)"
             aria-label="Search Menu"
           >
-            🔍
+            <span className="srb-search-icon">🔍</span>
+            <span className="srb-search-label">Search...</span>
+            <kbd className="srb-search-kbd">⌘K</kbd>
           </button>
 
           <button 
-            className="srb-btn srb-btn-primary" 
+            className="srb-btn srb-btn-atelier-order" 
             onClick={() => setActiveTab('cart')}
             aria-label="View Shopping Cart"
           >
-            🛒 Cart
-            {cartCount > 0 && <span style={{ background: 'white', color: 'var(--primary)', borderRadius: '999px', padding: '0.1rem 0.5rem', fontSize: '0.8rem', fontWeight: 800 }}>{cartCount}</span>}
-          </button>
-
-          <button 
-            className="srb-icon-btn" 
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            style={{ display: 'none' }}
-            className="srb-mobile-toggle srb-icon-btn"
-          >
-            {mobileMenuOpen ? '✕' : '☰'}
+            Order Now {cartCount > 0 && `(${cartCount})`}
           </button>
         </div>
       </div>
     </nav>
   );
 }
+

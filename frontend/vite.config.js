@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react'
 import path from 'path'
 
 export default defineConfig({
+  base: '/assets/sugar_rush_bakes/frontend/',
   plugins: [react()],
   build: {
     outDir: '../sugar_rush_bakes/public/frontend',
